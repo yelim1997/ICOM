@@ -41,6 +41,30 @@ namespace icom
             chart1.Series["CPU"].Points.AddY(fcpu);
             chart1.Series["RAM"].Points.AddY(fram);
         }
+        private void Form1_Load2(object sender, EventArgs e)
+        {
+            try
+            {
+                Process[] proc = Process.GetProcesses();
+                metroLabel3.Text = Convert.ToString(proc.Length);
+                foreach (Process p in proc)
+                {
+                    WriteProcessInfo(p);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        private void WriteProcessInfo(Process processInfo)
+        {
+            string[] row = { Convert.ToString(processInfo.ProcessName), Convert.ToString(processInfo.Id), Convert.ToString(processInfo.VirtualMemorySize64) };
+            var listViewItem = new ListViewItem(row);
+            listView1.Items.Add(listViewItem);
+
+        }
 
     }
 }

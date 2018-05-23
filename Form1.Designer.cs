@@ -47,6 +47,12 @@ namespace icom
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Process_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Process_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Process_mem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -60,6 +66,7 @@ namespace icom
             ((System.ComponentModel.ISupportInitialize)(this.pCPU)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             //
@@ -197,6 +204,9 @@ namespace icom
             //
             // tabPage3
             //
+            this.tabPage3.Controls.Add(this.listView1);
+            this.tabPage3.Controls.Add(this.metroLabel3);
+            this.tabPage3.Controls.Add(this.label9);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -204,6 +214,52 @@ namespace icom
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "background & foreground Manager";
             this.tabPage3.UseVisualStyleBackColor = true;
+            //
+            // listView1
+            //
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Process_Name,
+            this.Process_id,
+            this.Process_mem});
+            this.listView1.Location = new System.Drawing.Point(30, 73);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(683, 336);
+            this.listView1.TabIndex = 2;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+           //
+           // Process_Name
+           //
+           this.Process_Name.Text = "Process_Name";
+           this.Process_Name.Width = 249;
+           //
+           // Process_id
+           //
+           this.Process_id.Text = "Process_id";
+           this.Process_id.Width = 196;
+           //
+           // Process_mem
+           //
+           this.Process_mem.Text = "Process_mem";
+           this.Process_mem.Width = 203;
+           //
+           // metroLabel3
+           //
+           this.metroLabel3.AutoSize = true;
+           this.metroLabel3.Location = new System.Drawing.Point(130, 19);
+           this.metroLabel3.Name = "metroLabel3";
+           this.metroLabel3.Size = new System.Drawing.Size(87, 20);
+           this.metroLabel3.TabIndex = 1;
+           this.metroLabel3.Text = "metroLabel3";
+           //
+           // label9
+           //
+           this.label9.AutoSize = true;
+           this.label9.Location = new System.Drawing.Point(27, 24);
+           this.label9.Name = "label9";
+           this.label9.Size = new System.Drawing.Size(97, 15);
+           this.label9.TabIndex = 0;
+           this.label9.Text = "프로세스 수 :";
             //
             // tabPage4
             //
@@ -294,12 +350,15 @@ namespace icom
             this.Name = "Form1";
             this.Text = "ICOM | Bermuda";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Form1_Load2);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRAM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCPU)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
@@ -330,5 +389,11 @@ namespace icom
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader Process_Name;
+        private System.Windows.Forms.ColumnHeader Process_id;
+        private System.Windows.Forms.ColumnHeader Process_mem;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private System.Windows.Forms.Label label9;
     }
 }
