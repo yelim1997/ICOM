@@ -78,22 +78,27 @@ namespace icom
             //
             // metroProgressBar1
             //
+            this.metroProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.metroProgressBar1.Location = new System.Drawing.Point(90, 47);
             this.metroProgressBar1.Name = "metroProgressBar1";
-            this.metroProgressBar1.Size = new System.Drawing.Size(653, 36);
+            this.metroProgressBar1.Size = new System.Drawing.Size(811, 36);
             this.metroProgressBar1.TabIndex = 0;
             //
             // metroProgressBar2
             //
+            this.metroProgressBar2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.metroProgressBar2.Location = new System.Drawing.Point(90, 105);
             this.metroProgressBar2.Name = "metroProgressBar2";
-            this.metroProgressBar2.Size = new System.Drawing.Size(653, 36);
+            this.metroProgressBar2.Size = new System.Drawing.Size(811, 36);
             this.metroProgressBar2.TabIndex = 1;
             //
             // metroLabel1
             //
+            this.metroLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(761, 58);
+            this.metroLabel1.Location = new System.Drawing.Point(919, 58);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(84, 20);
             this.metroLabel1.TabIndex = 2;
@@ -101,8 +106,9 @@ namespace icom
             //
             // metroLabel2
             //
+            this.metroLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(758, 121);
+            this.metroLabel2.Location = new System.Drawing.Point(916, 121);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(87, 20);
             this.metroLabel2.TabIndex = 3;
@@ -117,7 +123,7 @@ namespace icom
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(21, 158);
+            this.chart1.Location = new System.Drawing.Point(4, 158);
             this.chart1.Margin = new System.Windows.Forms.Padding(4);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
@@ -130,7 +136,7 @@ namespace icom
             series2.Name = "RAM";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(905, 312);
+            this.chart1.Size = new System.Drawing.Size(1080, 376);
             this.chart1.TabIndex = 5;
             this.chart1.Text = "chart1";
             //
@@ -147,6 +153,9 @@ namespace icom
             //
             // label1
             //
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(18, 58);
             this.label1.Name = "label1";
@@ -156,6 +165,9 @@ namespace icom
             //
             // label2
             //
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(18, 117);
             this.label2.Name = "label2";
@@ -165,6 +177,9 @@ namespace icom
             //
             // tabControl1
             //
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -173,7 +188,7 @@ namespace icom
             this.tabControl1.Location = new System.Drawing.Point(13, 83);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(941, 503);
+            this.tabControl1.Size = new System.Drawing.Size(1099, 570);
             this.tabControl1.TabIndex = 8;
             //
             // tabPage1
@@ -188,7 +203,7 @@ namespace icom
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(933, 474);
+            this.tabPage1.Size = new System.Drawing.Size(1091, 541);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "CPU & RAM Manager";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -205,6 +220,7 @@ namespace icom
             //
             // tabPage3
             //
+            this.tabPage3.Controls.Add(this.metroButton1);
             this.tabPage3.Controls.Add(this.listView1);
             this.tabPage3.Controls.Add(this.metroLabel3);
             this.tabPage3.Controls.Add(this.label9);
@@ -218,14 +234,18 @@ namespace icom
             //
             // metroButton1
             //
+            this.metroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.metroButton1.Location = new System.Drawing.Point(793, 386);
             this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(75, 23);
+            this.metroButton1.Size = new System.Drawing.Size(90, 40);
             this.metroButton1.TabIndex = 3;
             this.metroButton1.Text = "종료";
             //
             // listView1
             //
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Process_Name,
             this.Process_id,
@@ -237,42 +257,45 @@ namespace icom
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-           //
-           // Process_Name
-           //
-           this.Process_Name.DisplayIndex = 0;
-           this.Process_Name.Text = "Process_Name";
-           this.Process_Name.Width = 249;
-           //
-           // Process_id
-           //
-           this.Process_id.DisplayIndex = 1;
-           this.Process_id.Text = "Process_id";
-           this.Process_id.Width = 196;
-           //
-           // Process_mem
-           //
-           this.Process_id.DisplayIndex = 2;
-           this.Process_mem.Text = "Process_memory";
-           this.Process_mem.Width = 203;
-           //
-           // metroLabel3
-           //
-           this.metroLabel3.AutoSize = true;
-           this.metroLabel3.Location = new System.Drawing.Point(130, 19);
-           this.metroLabel3.Name = "metroLabel3";
-           this.metroLabel3.Size = new System.Drawing.Size(87, 20);
-           this.metroLabel3.TabIndex = 1;
-           this.metroLabel3.Text = "metroLabel3";
-           //
-           // label9
-           //
-           this.label9.AutoSize = true;
-           this.label9.Location = new System.Drawing.Point(27, 24);
-           this.label9.Name = "label9";
-           this.label9.Size = new System.Drawing.Size(97, 15);
-           this.label9.TabIndex = 0;
-           this.label9.Text = "프로세스 수 :";
+            //
+            // Process_Name
+            //
+            this.Process_Name.Text = "Process_Name";
+            this.Process_Name.Width = 249;
+            //
+            // Process_id
+            //
+            this.Process_id.Text = "Process_id";
+            this.Process_id.Width = 196;
+            //
+            // Process_mem
+            //
+            this.Process_mem.Text = "Process_mem";
+            this.Process_mem.Width = 203;
+            //
+            // metroLabel3
+            //
+            this.metroLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(130, 19);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(87, 20);
+            this.metroLabel3.TabIndex = 1;
+            this.metroLabel3.Text = "metroLabel3";
+            //
+            // label9
+            //
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(27, 24);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(97, 15);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "프로세스 수 :";
             //
             // tabPage4
             //
@@ -292,8 +315,11 @@ namespace icom
             //
             // label8
             //
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(60, 364);
+            this.label8.Location = new System.Drawing.Point(111, 371);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 15);
             this.label8.TabIndex = 5;
@@ -301,8 +327,11 @@ namespace icom
             //
             // label7
             //
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(60, 303);
+            this.label7.Location = new System.Drawing.Point(111, 306);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(45, 15);
             this.label7.TabIndex = 4;
@@ -310,8 +339,11 @@ namespace icom
             //
             // label6
             //
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(60, 239);
+            this.label6.Location = new System.Drawing.Point(111, 245);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 15);
             this.label6.TabIndex = 3;
@@ -319,8 +351,11 @@ namespace icom
             //
             // label5
             //
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(60, 174);
+            this.label5.Location = new System.Drawing.Point(111, 183);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 15);
             this.label5.TabIndex = 2;
@@ -328,8 +363,11 @@ namespace icom
             //
             // label4
             //
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(60, 115);
+            this.label4.Location = new System.Drawing.Point(111, 120);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 15);
             this.label4.TabIndex = 1;
@@ -337,8 +375,11 @@ namespace icom
             //
             // label3
             //
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(60, 58);
+            this.label3.Location = new System.Drawing.Point(111, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 15);
             this.label3.TabIndex = 0;
@@ -358,7 +399,7 @@ namespace icom
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 650);
+            this.ClientSize = new System.Drawing.Size(1135, 692);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "ICOM | Bermuda";
@@ -409,6 +450,5 @@ namespace icom
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private System.Windows.Forms.Label label9;
         private MetroFramework.Controls.MetroButton metroButton1;
-
     }
 }
