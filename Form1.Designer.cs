@@ -29,10 +29,10 @@ namespace icom
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar2 = new MetroFramework.Controls.MetroProgressBar();
@@ -113,23 +113,23 @@ namespace icom
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(21, 158);
             this.chart1.Margin = new System.Windows.Forms.Padding(4);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "CPU";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "RAM";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "CPU";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "RAM";
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(905, 312);
             this.chart1.TabIndex = 5;
             this.chart1.Text = "chart1";
@@ -205,6 +205,7 @@ namespace icom
             //
             // tabPage3
             //
+            this.tabPage3.Controls.Add(this.metroButton1);
             this.tabPage3.Controls.Add(this.listView1);
             this.tabPage3.Controls.Add(this.metroLabel3);
             this.tabPage3.Controls.Add(this.label9);
@@ -237,42 +238,42 @@ namespace icom
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-           //
-           // Process_Name
-           //
-           this.Process_Name.DisplayIndex = 0;
-           this.Process_Name.Text = "Process_Name";
-           this.Process_Name.Width = 249;
-           //
-           // Process_id
-           //
-           this.Process_id.DisplayIndex = 1;
-           this.Process_id.Text = "Process_id";
-           this.Process_id.Width = 196;
-           //
-           // Process_mem
-           //
-           this.Process_id.DisplayIndex = 2;
-           this.Process_mem.Text = "Process_memory";
-           this.Process_mem.Width = 203;
-           //
-           // metroLabel3
-           //
-           this.metroLabel3.AutoSize = true;
-           this.metroLabel3.Location = new System.Drawing.Point(130, 19);
-           this.metroLabel3.Name = "metroLabel3";
-           this.metroLabel3.Size = new System.Drawing.Size(87, 20);
-           this.metroLabel3.TabIndex = 1;
-           this.metroLabel3.Text = "metroLabel3";
-           //
-           // label9
-           //
-           this.label9.AutoSize = true;
-           this.label9.Location = new System.Drawing.Point(27, 24);
-           this.label9.Name = "label9";
-           this.label9.Size = new System.Drawing.Size(97, 15);
-           this.label9.TabIndex = 0;
-           this.label9.Text = "프로세스 수 :";
+            //
+            // Process_Name
+            //
+            this.Process_Name.DisplayIndex = 0;
+            this.Process_Name.Text = "Process_Name";
+            this.Process_Name.Width = 249;
+            //
+            // Process_id
+            //
+            this.Process_id.DisplayIndex = 1;
+            this.Process_id.Text = "Process_id";
+            this.Process_id.Width = 196;
+            //
+            // Process_mem
+            //
+            this.Process_mem.DisplayIndex = 2;
+            this.Process_mem.Text = "Process_memory";
+            this.Process_mem.Width = 203;
+            //
+            // metroLabel3
+            //
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(130, 19);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(87, 20);
+            this.metroLabel3.TabIndex = 1;
+            this.metroLabel3.Text = "metroLabel3";
+            //
+            // label9
+            //
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(27, 24);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(97, 15);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "프로세스 수 :";
             //
             // tabPage4
             //
@@ -409,6 +410,5 @@ namespace icom
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private System.Windows.Forms.Label label9;
         private MetroFramework.Controls.MetroButton metroButton1;
-
     }
 }
