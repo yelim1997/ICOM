@@ -46,6 +46,7 @@ namespace icom
             try
             {
                 Process[] proc = Process.GetProcesses();
+                listView1.CheckBoxes = true;
                 metroLabel3.Text = Convert.ToString(proc.Length);
                 foreach (Process p in proc)
                 {
