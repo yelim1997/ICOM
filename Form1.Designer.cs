@@ -213,7 +213,7 @@ namespace icom
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(933, 474);
+            this.tabPage2.Size = new System.Drawing.Size(1091, 541);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Program Manager";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -227,9 +227,9 @@ namespace icom
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(933, 474);
+            this.tabPage3.Size = new System.Drawing.Size(1091, 541);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "background & foreground Manager";
+            this.tabPage3.Text = "Background & Foreground Manager";
             this.tabPage3.UseVisualStyleBackColor = true;
             //
             // metroButton1
@@ -253,24 +253,24 @@ namespace icom
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(30, 73);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(683, 336);
+            this.listView1.Size = new System.Drawing.Size(711, 336);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             //
             // Process_Name
             //
-            this.Process_Name.Text = "Process_Name";
+            this.Process_Name.Text = "ProcessName";
             this.Process_Name.Width = 249;
             //
             // Process_id
             //
-            this.Process_id.Text = "Process_id";
+            this.Process_id.Text = "Process_Id";
             this.Process_id.Width = 196;
             //
             // Process_mem
             //
-            this.Process_mem.Text = "Process_mem";
+            this.Process_mem.Text = "Process_Memory(MB)";
             this.Process_mem.Width = 203;
             //
             // metroLabel3
@@ -308,7 +308,7 @@ namespace icom
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(933, 474);
+            this.tabPage4.Size = new System.Drawing.Size(1091, 541);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "System information";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -390,7 +390,7 @@ namespace icom
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(933, 474);
+            this.tabPage5.Size = new System.Drawing.Size(1091, 541);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "About";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -403,7 +403,6 @@ namespace icom
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "ICOM | Bermuda";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.Load += new System.EventHandler(this.Form1_Load2);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRAM)).EndInit();

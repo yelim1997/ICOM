@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -61,11 +62,10 @@ namespace icom
         }
         private void WriteProcessInfo(Process processInfo)
         {
-            string[] row = { Convert.ToString(processInfo.ProcessName), Convert.ToString(processInfo.Id), Convert.ToString(processInfo.VirtualMemorySize64) };
+            string[] row = { Convert.ToString(processInfo.ProcessName), Convert.ToString(processInfo.Id), Convert.ToString((processInfo.VirtualMemorySize64/1024)/1024) };
             var listViewItem = new ListViewItem(row);
             listView1.Items.Add(listViewItem);
 
         }
-
     }
 }
