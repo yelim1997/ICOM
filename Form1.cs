@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Net;
 using Microsoft.Win32;
+using System.Collections;
 
 namespace icom
 {
@@ -103,7 +104,106 @@ namespace icom
             listView1.Items.Add(listViewItem);
 
         }
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            for (int i = 0; i < listView1.Columns.Count; i++)
+            {
+                listView1.Columns[i].Text = listView1.Columns[i].Text.Replace("▲", "");
+                listView1.Columns[i].Text = listView1.Columns[i].Text.Replace("▼", "");
 
+            }
+            if (this.listView1.Sorting == SortOrder.Ascending || listView1.Sorting == SortOrder.None)
+            {
+                this.listView1.ListViewItemSorter = new ListViewItemComparerASC(e.Column);
+                listView1.Sorting = SortOrder.Descending;
+                listView1.Columns[e.Column].Text = listView1.Columns[e.Column].Text + "▲";
+            }
+            else
+            {
+                this.listView1.ListViewItemSorter = new ListViewItemComparerDESC(e.Column);
+                listView1.Sorting = SortOrder.Ascending;
+                listView1.Columns[e.Column].Text = listView1.Columns[e.Column].Text + "▼";
+
+            }
+
+            listView1.Sort();
+
+        }
+        class ListViewItemComparerASC : IComparer
+        {
+            private int col;
+
+            public ListViewItemComparerASC()
+            {
+                col = 0;
+            }
+            public ListViewItemComparerASC(int column)
+            {
+                col = column;
+
+            }
+            public int Compare(object x, object y)
+
+            {
+                try
+                {
+                    if (Convert.ToInt32(((ListViewItem)x).SubItems[col].Text) > Convert.ToInt32(((ListViewItem)y).SubItems[col].Text))
+                    {
+                        return 1;
+                    }
+                    else
+                        return -1;
+                }
+                catch (Exception)
+                {
+
+
+                    return String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
+
+                }
+
+
+
+            }
+
+
+
+
+
+        }
+        class ListViewItemComparerDESC : IComparer
+        {
+            private int col;
+
+            public ListViewItemComparerDESC()
+            {
+                col = 0;
+            }
+            public ListViewItemComparerDESC(int column)
+            {
+                col = column;
+
+            }
+            public int Compare(object x, object y)
+
+            {
+                try
+                {
+                    if (Convert.ToInt32(((ListViewItem)x).SubItems[col].Text) < Convert.ToInt32(((ListViewItem)y).SubItems[col].Text))
+                    {
+                        return 1;
+                    }
+                    else
+                        return -1;
+                }
+                catch (Exception)
+                {
+
+                    return String.Compare(((ListViewItem)y).SubItems[col].Text, ((ListViewItem)x).SubItems[col].Text);
+                }
+            }
+
+        }
 
     }
 }
