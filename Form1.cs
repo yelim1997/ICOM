@@ -16,6 +16,7 @@ namespace icom
 {
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
+
         public Form1()
         {
             InitializeComponent();
@@ -100,102 +101,37 @@ namespace icom
         {
             for (int i = 0; i < listView1.Columns.Count; i++)
             {
-                listView1.Columns[i].Text = listView1.Columns[i].Text.Replace("▲", "");
+
                 listView1.Columns[i].Text = listView1.Columns[i].Text.Replace("▼", "");
+                listView1.Columns[i].Text = listView1.Columns[i].Text.Replace("▲", "");
 
             }
+
             if (this.listView1.Sorting == SortOrder.Ascending || listView1.Sorting == SortOrder.None)
             {
-                this.listView1.ListViewItemSorter = new ListViewItemComparerASC(e.Column);
                 listView1.Sorting = SortOrder.Descending;
                 listView1.Columns[e.Column].Text = listView1.Columns[e.Column].Text + "▲";
             }
             else
             {
-                this.listView1.ListViewItemSorter = new ListViewItemComparerDESC(e.Column);
                 listView1.Sorting = SortOrder.Ascending;
                 listView1.Columns[e.Column].Text = listView1.Columns[e.Column].Text + "▼";
 
             }
-
-            listView1.Sort();
-
+            if (e.Column == 1)
+            {
+                ItemSort.sort(listView1, e, true);
+            }
+            else if (e.Column == 0)
+            {
+                ItemSort.sort(listView1, e, false);
+            }
+            else
+            {
+                ItemSort.sort(listView1, e, true);
+            }
         }
-        class ListViewItemComparerASC : IComparer
-        {
-            private int col;
 
-            public ListViewItemComparerASC()
-            {
-                col = 0;
-            }
-            public ListViewItemComparerASC(int column)
-            {
-                col = column;
-
-            }
-            public int Compare(object x, object y)
-
-            {
-                try
-                {
-                    if (Convert.ToInt32(((ListViewItem)x).SubItems[col].Text) > Convert.ToInt32(((ListViewItem)y).SubItems[col].Text))
-                    {
-                        return 1;
-                    }
-                    else
-                        return -1;
-                }
-                catch (Exception)
-                {
-
-
-                    return String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
-
-                }
-
-
-
-            }
-
-
-
-
-
-        }
-        class ListViewItemComparerDESC : IComparer
-        {
-            private int col;
-
-            public ListViewItemComparerDESC()
-            {
-                col = 0;
-            }
-            public ListViewItemComparerDESC(int column)
-            {
-                col = column;
-
-            }
-            public int Compare(object x, object y)
-
-            {
-                try
-                {
-                    if (Convert.ToInt32(((ListViewItem)x).SubItems[col].Text) < Convert.ToInt32(((ListViewItem)y).SubItems[col].Text))
-                    {
-                        return 1;
-                    }
-                    else
-                        return -1;
-                }
-                catch (Exception)
-                {
-
-                    return String.Compare(((ListViewItem)y).SubItems[col].Text, ((ListViewItem)x).SubItems[col].Text);
-                }
-            }
-
-        }
 
         private void listView2_ColumnClick(object sender, ColumnClickEventArgs e)
         {
@@ -219,5 +155,34 @@ namespace icom
             }
 
         }
+
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+
+                if (MessageBox.Show("정말 선택항목을 삭제하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (listView1.SelectedItems.Count > 0)
+                    {
+                        listView1.Items[0].Focused = false;
+                        listView1.Items[0].Selected = false;
+                    }
+                    if (listView1.Items.Count > 0)
+                    {
+                        for (int i = listView1.Items.Count - 1; i >= 0; i--)
+                        {
+                            if (listView1.Items[i].Checked == true)
+                            {
+
+                                listView1.Items[i].Remove();
+
+                                metroLabel3.Text = Convert.ToString(listView1.Items.Count);
+
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
     }
-}
