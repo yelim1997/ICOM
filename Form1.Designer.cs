@@ -50,6 +50,9 @@ namespace icom
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
             this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -66,9 +69,6 @@ namespace icom
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRAM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCPU)).BeginInit();
@@ -258,6 +258,22 @@ namespace icom
             this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
+            this.listView2.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView2_ColumnClick);
+            //
+            // columnHeader1
+            //
+            this.columnHeader1.Text = "Program Name";
+            this.columnHeader1.Width = 300;
+            //
+            // columnHeader2
+            //
+            this.columnHeader2.Text = "Install Date";
+            this.columnHeader2.Width = 150;
+            //
+            // columnHeader3
+            //
+            this.columnHeader3.Text = "Memory";
+            this.columnHeader3.Width = 150;
             //
             // tabPage3
             //
@@ -454,21 +470,6 @@ namespace icom
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "About";
             this.tabPage5.UseVisualStyleBackColor = true;
-            //
-            // columnHeader1
-            //
-            this.columnHeader1.Text = "Program Name";
-            this.columnHeader1.Width = 300;
-            //
-            // columnHeader2
-            //
-            this.columnHeader2.Text = "Install Date";
-            this.columnHeader2.Width = 150;
-            //
-            // columnHeader3
-            //
-            this.columnHeader3.Text = "Memory";
-            this.columnHeader3.Width = 150;
             //
             // Form1
             //

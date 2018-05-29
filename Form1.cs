@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-
+using ListViewColumSortDLL;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -197,5 +197,27 @@ namespace icom
 
         }
 
+        private void listView2_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column == 1)
+            { // 1번 칼럼: 숫자 정렬
+
+                ItemSort.sort(listView2, e, true);
+
+            }
+            else if (e.Column == 0)
+            { // 0번 칼럼: 문자 정렬
+
+                ItemSort.sort(listView2, e, false);
+
+            }
+            else
+            { // 그 외 칼럼: 문자 정렬
+
+                ItemSort.sort(listView2, e, false);
+
+            }
+
+        }
     }
 }
