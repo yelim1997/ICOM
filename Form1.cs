@@ -51,36 +51,28 @@ namespace icom
             }
 
             //Form1_Load3, 프로그램
-            string uninstallKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-            using (RegistryKey rk = Registry.LocalMachine.OpenSubKey(uninstallKey))
+            string computer = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+            using (RegistryKey app = Registry.LocalMachine.OpenSubKey(computer))
             {
-                foreach (string skName in rk.GetSubKeyNames())
+                foreach (string appName in app.GetSubKeyNames())
                 {
-                    using (RegistryKey sk = rk.OpenSubKey(skName))
+
+                    using (RegistryKey name = app.OpenSubKey(appName))
                     {
                         try
                         {
-                            var displayName = sk.GetValue("DisplayName");
-                            var size = sk.GetValue("EstimatedSize");
+                            var displayName = name.GetValue("DisplayName");
+                            var installDate = name.GetValue("InstallDate");
 
-                            ListViewItem item;
-                            if (displayName != null)
-                            {
-                                if (size != null)
-                                {
-                                    item = new ListViewItem(new string[] {displayName.ToString(),
-                                                       size.ToString()});
-                                }
-                                else
-                                    item = new ListViewItem(new string[] { displayName.ToString() });
-                                checkedListBox1.Items.Add(item);
-                            }
+                            string[] row = { Convert.ToString(displayName.ToString()), Convert.ToString(installDate.ToString()) };
+                            var listViewItem = new ListViewItem(row);
+                            listView2.Items.Add(listViewItem);
                         }
                         catch (Exception ex)
-                        { }
+                        { Console.WriteLine(ex.Message); }
                     }
                 }
-                //label10.Text += " (" + ProgramName.Items.Count.ToString() + ")";
+                label10.Text += " : " + listView2.Items.Count.ToString();
             }
 
         }
