@@ -88,6 +88,21 @@ namespace icom
             metroLabel2.Text = string.Format("{0:0.00}%", fram);
             chart1.Series["CPU"].Points.AddY(fcpu);
             chart1.Series["RAM"].Points.AddY(fram);
+
+            int ref_value = (int)fcpu;
+
+            if (ref_value < 30)
+            {
+                pictureBox1.Image = global::icom.Properties.Resources.안정;
+            }
+            else if (ref_value < 60)
+            {
+                pictureBox1.Image = Properties.Resources.적정;
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.위험;
+            }
         }
 
         private void WriteProcessInfo(Process processInfo)
@@ -183,6 +198,16 @@ namespace icom
                     }
 
                 }
+            }
+            private void button1_Click(object sender, EventArgs e) // 기준치 설정 버튼 클릭시 새로운 창 띄움
+            {
+                  Form2 form2 = new Form2();
+
+                  form2.StartPosition = FormStartPosition.Manual;
+                  form2.Location = new Point(400, 300);
+
+                  form2.ShowDialog();
+
             }
         }
     }
