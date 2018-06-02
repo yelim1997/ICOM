@@ -17,6 +17,8 @@ namespace icom
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
 
+        public static string CpuSet;
+
         public Form1()
         {
             InitializeComponent();
@@ -92,17 +94,13 @@ namespace icom
 
             int ref_value = (int)fcpu;
 
-            if (ref_value < 30)
+            if (ref_value >= Convert.ToInt32(CpuSet))
             {
-                pictureBox1.Image = global::icom.Properties.Resources.안정;
-            }
-            else if (ref_value < 60)
-            {
-                pictureBox1.Image = Properties.Resources.적정;
+                pictureBox1.Image = global::icom.Properties.Resources.위험;
             }
             else
             {
-                pictureBox1.Image = Properties.Resources.위험;
+                pictureBox1.Image = Properties.Resources.안정;
             }
         }
 
@@ -201,7 +199,7 @@ namespace icom
             Form2 form2 = new Form2();
 
             form2.StartPosition = FormStartPosition.Manual;
-            form2.Location = new Point(400, 300);
+            form2.Location = new Point(400, 350);
 
             form2.ShowDialog();
 

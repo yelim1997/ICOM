@@ -9,16 +9,13 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Net;
 
-
-
 namespace icom
 {
     public partial class Form2 : MetroFramework.Forms.MetroForm
     {
         string[] cpu_value = new string[30];
         int cnt = 0;
-        int num = 0;
-
+        String num;
 
         public Form2()
         {
@@ -36,13 +33,15 @@ namespace icom
             for(int i=0;i< cpu_value.Length;i++)
             {
                 cpu_value[i] = textBox1.Text;
-                cnt++;
             }
+            cnt++;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-             num = Convert.ToInt32(cpu_value[cnt]);
+            num = cpu_value[cnt];
+            Form1.CpuSet = num;
+
         }
     }
 }
