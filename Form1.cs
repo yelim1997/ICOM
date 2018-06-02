@@ -118,8 +118,8 @@ namespace icom
             for (int i = 0; i < listView1.Columns.Count; i++)
             {
 
-                listView1.Columns[i].Text = listView1.Columns[i].Text.Replace("▼", "");
-                listView1.Columns[i].Text = listView1.Columns[i].Text.Replace("▲", "");
+                listView1.Columns[i].Text = listView1.Columns[i].Text.Replace(" ▼", "");
+                listView1.Columns[i].Text = listView1.Columns[i].Text.Replace(" ▲", "");
 
             }
 
