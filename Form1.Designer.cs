@@ -47,6 +47,7 @@ namespace icom
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -206,6 +207,7 @@ namespace icom
             //
             // tabPage1
             //
+            this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.pictureBox1);
@@ -223,6 +225,15 @@ namespace icom
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "CPU & RAM Manager";
             this.tabPage1.UseVisualStyleBackColor = true;
+            //
+            // label12
+            //
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(1050, 248);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(213, 15);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "※현재 기본 설정값은 70 입니다.";
             //
             // button1
             //
@@ -577,5 +588,6 @@ namespace icom
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private MetroFramework.Controls.MetroButton metroButton2;
+        private System.Windows.Forms.Label label12;
     }
 }

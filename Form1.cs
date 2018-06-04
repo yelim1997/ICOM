@@ -94,13 +94,27 @@ namespace icom
 
             int ref_value = (int)fcpu;
 
-            if (ref_value >= Convert.ToInt32(CpuSet))
+            if (Convert.ToInt32(CpuSet) == 0)
             {
-                pictureBox1.Image = global::icom.Properties.Resources.위험;
+                if(ref_value > 70)
+                {
+                    pictureBox1.Image = global::icom.Properties.Resources.위험;
+                }
+                else
+                {
+                    pictureBox1.Image = Properties.Resources.안정;
+                }
             }
             else
             {
-                pictureBox1.Image = Properties.Resources.안정;
+                if (ref_value > Convert.ToInt32(CpuSet))
+                {
+                    pictureBox1.Image = global::icom.Properties.Resources.위험;
+                }
+                else
+                {
+                    pictureBox1.Image = Properties.Resources.안정;
+                }
             }
         }
 
@@ -145,8 +159,8 @@ namespace icom
         {
             for (int i = 0; i < listView1.Columns.Count; i++)
             {
-                listView2.Columns[i].Text = listView2.Columns[e.Column].Text.Replace(" ▼", "");
-                listView2.Columns[i].Text = listView2.Columns[e.Column].Text.Replace(" ▲", "");
+                listView2.Columns[i].Text = listView2.Columns[i].Text.Replace(" ▼", "");
+                listView2.Columns[i].Text = listView2.Columns[i].Text.Replace(" ▲", "");
             }
             if (e.Column == 0)
             { // Program Name
@@ -318,7 +332,7 @@ namespace icom
             sorter.IsNumber = isNumber;
             if (e.Column == sorter.Column)
             {
-                if (sorter.Order == SortOrder.Ascending )
+                if (sorter.Order == SortOrder.Ascending)
                 {
                     sorter.Order = SortOrder.Descending;
                     listView.Columns[e.Column].Text = listView.Columns[e.Column].Text + " ▼";
