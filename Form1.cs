@@ -179,7 +179,7 @@ namespace icom
 
                 ItemSort.sort(listView2, e, false);
             }
-            else if(e.Column == 2)
+            else if (e.Column == 2)
             { // Install DateSize
 
                 ItemSort.sort(listView2, e, true);
@@ -232,7 +232,7 @@ namespace icom
 
         private void metroButton2_Click(object sender, EventArgs e)//프로그램 삭제
         {
-
+            int num = 0;
             if (MessageBox.Show("정말 선택항목을 삭제하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
 
@@ -243,32 +243,47 @@ namespace icom
                 }
                 if (listView2.Items.Count > 0)
                 {
+                    string[] product = new string[listView2.Items.Count];
                     for (int i = listView2.Items.Count - 1; i >= 0; i--)
                     {
+
                         if (listView2.Items[i].Checked == true)
                         {
+
+                            String code = listView2.Items[i].ToString();
+
+                            product[num] = code.Substring(30, 36);
+
+                            num++;
                             listView2.Items[i].Remove();
 
-                            metroLabel4.Text = listView2.Items.Count.ToString();
-                            String product = listView2.Items[i].ToString();
-                            String code = product.Substring(30, 36);
-
-                            Process p = new Process();
-                            p.StartInfo.FileName = "msiexec.exe";
-                            p.StartInfo.Arguments = "/X\"{" + code + "}\"/qn";
-                            p.Start();
 
                             // 프로그램 수 변경 구현
 
                         }
+
                     }
+                    for (int j = 0; j < num; j++)
+                    {
+
+
+                        Process p = new Process();
+                        p.StartInfo.FileName = "msiexec.exe";
+                        p.StartInfo.Arguments = "/X\"{" + product[j] + "}\"/qn";
+                        p.Start();
+                        //MessageBox.Show(product[j]);
+                    }
+                    metroLabel4.Text = listView2.Items.Count.ToString();
                 }
 
             }
         }
 
 
-    }
+
+
+
+}
 
 
     //sort
