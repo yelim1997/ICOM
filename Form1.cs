@@ -54,8 +54,8 @@ namespace icom
             }
 
             //Form1_Load3, 프로그램
-            string computer = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-            using (RegistryKey app = Registry.LocalMachine.OpenSubKey(computer))
+            string computer = @"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
+            using (RegistryKey app = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(computer))
             {
                 foreach (string appName in app.GetSubKeyNames())
                 {
@@ -64,20 +64,26 @@ namespace icom
                     {
                         try
                         {
+                            var uninstall = name.GetValue("UninstallString");
                             var programName = name.GetValue("DisplayName");
                             var installDate = name.GetValue("InstallDate");
                             var memorySize = (int)name.GetValue("EstimatedSize");
 
-                            string[] row = { Convert.ToString(programName.ToString()), Convert.ToString(installDate.ToString()), Convert.ToString(memorySize) };
+                            string[] row = { Convert.ToString(uninstall.ToString()), Convert.ToString(programName.ToString()), Convert.ToString(installDate.ToString()), Convert.ToString(memorySize) };
                             var listViewItem = new ListViewItem(row);
                             listView2.Items.Add(listViewItem);
+                            Process p = new Process();
+
+
                         }
                         catch (Exception ex)
                         { Console.WriteLine(ex.Message); }
                     }
                 }
-                label10.Text += " : " + listView2.Items.Count.ToString();
+                label10.Text += " : ";
+                metroLabel4.Text = listView2.Items.Count.ToString();
             }
+
 
         }
 
@@ -96,7 +102,7 @@ namespace icom
 
             if (Convert.ToInt32(CpuSet) == 0)
             {
-                if(ref_value > 70)
+                if (ref_value > 70)
                 {
                     pictureBox1.Image = global::icom.Properties.Resources.위험;
                 }
@@ -157,23 +163,28 @@ namespace icom
 
         private void listView2_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            for (int i = 0; i < listView1.Columns.Count; i++)
+            for (int i = 0; i < listView2.Columns.Count; i++)
             {
                 listView2.Columns[i].Text = listView2.Columns[i].Text.Replace(" ▼", "");
                 listView2.Columns[i].Text = listView2.Columns[i].Text.Replace(" ▲", "");
             }
             if (e.Column == 0)
-            { // Program Name
+            { // Uninstallkey
 
                 ItemSort.sort(listView2, e, false);
 
             }
             else if (e.Column == 1)
-            { // Install Date
+            { // Program Name
+
+                ItemSort.sort(listView2, e, false);
+            }
+            else if(e.Column == 2)
+            { // Install DateSize
 
                 ItemSort.sort(listView2, e, true);
             }
-            else
+            else if (e.Column == 3)
             { // Size
 
                 ItemSort.sort(listView2, e, true);
@@ -219,10 +230,12 @@ namespace icom
 
         }
 
-        private void metroButton2_Click(object sender, EventArgs e)
+        private void metroButton2_Click(object sender, EventArgs e)//프로그램 삭제
         {
+
             if (MessageBox.Show("정말 선택항목을 삭제하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+
                 if (listView2.SelectedItems.Count > 0)
                 {
                     listView2.Items[0].Focused = false;
@@ -234,10 +247,18 @@ namespace icom
                     {
                         if (listView2.Items[i].Checked == true)
                         {
-
                             listView2.Items[i].Remove();
 
-                            metroLabel3.Text = Convert.ToString(listView2.Items.Count);
+                            metroLabel4.Text = listView2.Items.Count.ToString();
+                            String product = listView2.Items[i].ToString();
+                            String code = product.Substring(30, 36);
+
+                            Process p = new Process();
+                            p.StartInfo.FileName = "msiexec.exe";
+                            p.StartInfo.Arguments = "/X\"{" + code + "}\"/qn";
+                            p.Start();
+
+                            // 프로그램 수 변경 구현
 
                         }
                     }
@@ -245,6 +266,7 @@ namespace icom
 
             }
         }
+
 
     }
 
