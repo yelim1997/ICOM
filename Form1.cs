@@ -16,6 +16,7 @@ namespace icom
 {
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
+        int listindex = 0;
 
         public static string CpuSet;
 
@@ -41,7 +42,7 @@ namespace icom
             {
                 Process[] proc = Process.GetProcesses();
                 listView1.CheckBoxes = true;
-                metroLabel3.Text = Convert.ToString(proc.Length);
+                Process_Num_Value.Text = Convert.ToString(proc.Length);
                 foreach (Process p in proc)
                 {
                     WriteProcessInfo(p);
@@ -87,7 +88,7 @@ namespace icom
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             float fcpu = pCPU.NextValue();
             float fram = pRAM.NextValue();
@@ -124,6 +125,7 @@ namespace icom
             }
         }
 
+        //프로세스의 정보를 불러와 listView1이 아이템으로 추가
         private void WriteProcessInfo(Process processInfo)
         {
             string[] row = { Convert.ToString(processInfo.ProcessName), Convert.ToString(processInfo.Id), Convert.ToString((processInfo.VirtualMemorySize64 / 1024) / 1024) };
@@ -131,7 +133,9 @@ namespace icom
             listView1.Items.Add(listViewItem);
 
         }
-        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+
+        // listView1 컬럼 클릭시
+        private void ListView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             for (int i = 0; i < listView1.Columns.Count; i++)
             {
@@ -141,19 +145,24 @@ namespace icom
 
             }
 
+            // false = 문자열 , true = 숫자열
+
             if (e.Column == 0)
-            { // Process Name
+            {
+                // Process Name
 
                 ItemSort.sort(listView1, e, false);
 
             }
             else if (e.Column == 1)
-            { // Process id
+            {
+                // Process id
 
                 ItemSort.sort(listView1, e, true);
             }
             else
-            { // Size
+            {
+                // Size
 
                 ItemSort.sort(listView1, e, true);
             }
@@ -161,7 +170,7 @@ namespace icom
         }
 
 
-        private void listView2_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void ListView2_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             for (int i = 0; i < listView2.Columns.Count; i++)
             {
@@ -191,12 +200,49 @@ namespace icom
             }
         }
 
+       // 프로세스 명 검색 시 SearchBox(TextBox) 엔터 이벤트
+        private void Search_Enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) //엔터 클릭시 Search Button 실행
+            {
+                this.SearchButton_Click(sender, e);
+            }
+        }
 
-        private void metroButton1_Click(object sender, EventArgs e)
+        // listView1의 아이템 찾아주는 함수
+        private ListViewItem Finditem(string searchtext, int startindex)
+        {
+            for (int i = startindex; i < listView1.Items.Count; i++)
+            {
+                ListViewItem SearchText = listView1.Items[i];
+                bool isContains = SearchText.SubItems[0].Text.Contains(searchtext);
+                if (isContains) {
+                    return SearchText;
+                }
+
+            }
+            return null;
+        }
+
+        private void Selectitem(ListViewItem SearchText)
+        {
+            listindex = SearchText.Index;
+            listView1.MultiSelect = false;
+            SearchText.Selected = true;
+            listView1.Select();
+            listView1.MultiSelect = true;
+        }
+
+        // 프로세스 종료 이벤트
+        private void Process_End_Button_Click(object sender, EventArgs e)
         {
 
-            if (MessageBox.Show("정말 선택항목을 삭제하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("정말 선택항목을 종료하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                string processname = listView1.SelectedItems[0].SubItems[0].Text;
+
+                Process[] proc = Process.GetProcessesByName(processname);
+
                 if (listView1.SelectedItems.Count > 0)
                 {
                     listView1.Items[0].Focused = false;
@@ -204,22 +250,76 @@ namespace icom
                 }
                 if (listView1.Items.Count > 0)
                 {
+                    String[] process = new string[listView1.Items.Count];
                     for (int i = listView1.Items.Count - 1; i >= 0; i--)
                     {
+
                         if (listView1.Items[i].Checked == true)
                         {
 
+
                             listView1.Items[i].Remove();
 
-                            metroLabel3.Text = Convert.ToString(listView1.Items.Count);
+
+                            Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
+
+
 
                         }
+
+                    }
+                    foreach (Process p in proc)
+                    {
+                        p.Kill();
                     }
                 }
 
+
+                else
+                {
+                    MessageBox.Show("선택된 프로세스가 없습니다.");
+                }
+
+
+
             }
         }
-        private void button1_Click(object sender, EventArgs e) // 기준치 설정 버튼 클릭시 새로운 창 띄움
+
+        // 검색 버튼 클릭 시 이벤트
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            ListViewItem SearchText = Finditem(SearchBox.Text, 0);
+
+            if (SearchText == null)
+                MessageBox.Show("일치하는 데이터가 없습니다.");
+            else
+                Selectitem(SearchText);
+            listView1.EnsureVisible(listindex);
+        }
+
+        // 다음 버튼 클릭 시 이벤트
+        private void NextButton_Search_Click(object sender, EventArgs e)
+        {
+            ListViewItem SearchText = Finditem(SearchBox.Text, ++listindex);
+            if ((SearchText != null) && (listindex > 0))
+            {
+                Selectitem(SearchText);
+                listView1.EnsureVisible(listindex);
+            }
+            else
+            {
+                MessageBox.Show("마지막 프로세스 입니다.");
+                listindex = -1;
+                if (listindex == -1)
+                {
+                    listindex = 0;
+                }
+            }
+            if (listindex == (listView1.Items.Count - 1))
+                listindex = -1;
+        }
+
+        private void Button1_Click(object sender, EventArgs e) // 기준치 설정 버튼 클릭시 새로운 창 띄움
         {
             Form2 form2 = new Form2();
 
@@ -230,7 +330,7 @@ namespace icom
 
         }
 
-        private void metroButton2_Click(object sender, EventArgs e)//프로그램 삭제
+        private void MetroButton2_Click(object sender, EventArgs e)//프로그램 삭제
         {
             int num = 0;
             if (MessageBox.Show("정말 선택항목을 삭제하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -283,7 +383,7 @@ namespace icom
 
 
 
-}
+    }
 
 
     //sort
