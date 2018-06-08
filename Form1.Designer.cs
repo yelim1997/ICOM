@@ -31,10 +31,10 @@ namespace icom
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar2 = new MetroFramework.Controls.MetroProgressBar();
@@ -67,8 +67,8 @@ namespace icom
             this.Process_End_Button = new MetroFramework.Controls.MetroButton();
             this.listView1 = new System.Windows.Forms.ListView();
             this.Process_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Process_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Process_mem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Process_Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Process_Memory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Process_Num_Value = new MetroFramework.Controls.MetroLabel();
             this.lProcess_Num = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -138,23 +138,23 @@ namespace icom
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(39, 160);
             this.chart1.Margin = new System.Windows.Forms.Padding(4);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "CPU";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Legend = "Legend1";
-            series4.Name = "RAM";
-            this.chart1.Series.Add(series3);
-            this.chart1.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "CPU";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "RAM";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(959, 367);
             this.chart1.TabIndex = 5;
             this.chart1.Text = "chart1";
@@ -256,9 +256,9 @@ namespace icom
             //
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::icom.Properties.Resources.안정;
-            this.pictureBox1.Location = new System.Drawing.Point(1046, 337);
+            this.pictureBox1.Location = new System.Drawing.Point(1018, 334);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(221, 150);
+            this.pictureBox1.Size = new System.Drawing.Size(270, 170);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             //
@@ -366,6 +366,7 @@ namespace icom
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Background & Foreground Manager";
             this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             //
             // NextButton_Search
             //
@@ -413,7 +414,7 @@ namespace icom
             this.Process_End_Button.Size = new System.Drawing.Size(90, 40);
             this.Process_End_Button.TabIndex = 3;
             this.Process_End_Button.Text = "종료";
-            this.Process_End_Button.Click += new System.EventHandler(this.Process_End_Button_Click);
+            this.Process_End_Button.Click += new System.EventHandler(this.Process_Stop_Button_Click);
             //
             // listView1
             //
@@ -422,8 +423,8 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Process_Name,
-            this.Process_id,
-            this.Process_mem});
+            this.Process_Id,
+            this.Process_Memory});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(30, 115);
             this.listView1.Name = "listView1";
@@ -438,19 +439,18 @@ namespace icom
             this.Process_Name.Text = "ProcessName";
             this.Process_Name.Width = 249;
             //
-            // Process_id
+            // Process_Id
             //
-            this.Process_id.Tag = "Numeric ";
-            this.Process_id.Text = "Process_Id";
-            this.Process_id.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Process_id.Width = 196;
+            this.Process_Id.Tag = "Numeric ";
+            this.Process_Id.Text = "Process_Id";
+            this.Process_Id.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Process_Id.Width = 196;
             //
-            // Process_mem
+            // Process_Memory
             //
-            this.Process_mem.Tag = "Numeric ";
-            this.Process_mem.Text = "Process_Memory(MB)";
-            this.Process_mem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Process_mem.Width = 203;
+            this.Process_Memory.Text = "Process_MemorySize(MB)";
+            this.Process_Memory.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Process_Memory.Width = 246;
             //
             // Process_Num_Value
             //
@@ -582,6 +582,7 @@ namespace icom
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "ICOM | Bermuda";
+            this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Right;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRAM)).EndInit();
@@ -631,8 +632,7 @@ namespace icom
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader Process_Name;
-        private System.Windows.Forms.ColumnHeader Process_id;
-        private System.Windows.Forms.ColumnHeader Process_mem;
+        private System.Windows.Forms.ColumnHeader Process_Id;
         private MetroFramework.Controls.MetroLabel Process_Num_Value;
         private System.Windows.Forms.Label lProcess_Num;
         private MetroFramework.Controls.MetroButton Process_End_Button;
@@ -651,5 +651,6 @@ namespace icom
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroButton NextButton_Search;
+        private System.Windows.Forms.ColumnHeader Process_Memory;
     }
 }

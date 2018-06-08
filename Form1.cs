@@ -41,7 +41,7 @@ namespace icom
             try
             {
                 Process[] proc = Process.GetProcesses();
-                listView1.CheckBoxes = true;
+             //   listView1.CheckBoxes = true;
                 Process_Num_Value.Text = Convert.ToString(proc.Length);
                 foreach (Process p in proc)
                 {
@@ -128,7 +128,8 @@ namespace icom
         //프로세스의 정보를 불러와 listView1이 아이템으로 추가
         private void WriteProcessInfo(Process processInfo)
         {
-            string[] row = { Convert.ToString(processInfo.ProcessName), Convert.ToString(processInfo.Id), Convert.ToString((processInfo.VirtualMemorySize64 / 1024) / 1024) };
+            string[] row = { Convert.ToString(processInfo.ProcessName), Convert.ToString(processInfo.Id), Convert.ToString((processInfo.VirtualMemorySize64 / 1024) / 1024)
+ };
             var listViewItem = new ListViewItem(row);
             listView1.Items.Add(listViewItem);
 
@@ -200,7 +201,7 @@ namespace icom
             }
         }
 
-       // 프로세스 명 검색 시 SearchBox(TextBox) 엔터 이벤트
+        // 프로세스 명 검색 시 SearchBox(TextBox) 엔터 이벤트
         private void Search_Enter(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) //엔터 클릭시 Search Button 실행
@@ -216,7 +217,8 @@ namespace icom
             {
                 ListViewItem SearchText = listView1.Items[i];
                 bool isContains = SearchText.SubItems[0].Text.Contains(searchtext);
-                if (isContains) {
+                if (isContains)
+                {
                     return SearchText;
                 }
 
@@ -234,55 +236,39 @@ namespace icom
         }
 
         // 프로세스 종료 이벤트
-        private void Process_End_Button_Click(object sender, EventArgs e)
+        private void Process_Stop_Button_Click(object sender, EventArgs e)
         {
-
-            if (MessageBox.Show("정말 선택항목을 종료하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                string processname = listView1.SelectedItems[0].SubItems[0].Text;
-
-                Process[] proc = Process.GetProcessesByName(processname);
-
+            // 프로세스 하나씩 삭제 구현
                 if (listView1.SelectedItems.Count > 0)
                 {
+
                     listView1.Items[0].Focused = false;
                     listView1.Items[0].Selected = false;
-                }
-                if (listView1.Items.Count > 0)
-                {
-                    String[] process = new string[listView1.Items.Count];
-                    for (int i = listView1.Items.Count - 1; i >= 0; i--)
+
+
+                    string id = listView1.SelectedItems[0].SubItems[1].Text;
+                    string name = listView1.SelectedItems[0].SubItems[0].Text;
+                    Console.WriteLine("프로세스 id : {0}", id);
+                    if (MessageBox.Show(name + "종료하시겠습니까?", "취소", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
+                        Process[] proc = Process.GetProcessesByName(name);
 
-                        if (listView1.Items[i].Checked == true)
+                            foreach (Process p in proc)
+                            {
+                                p.Kill();
+                            }
+                            foreach(ListViewItem listview1 in listView1.SelectedItems)
                         {
-
-
-                            listView1.Items[i].Remove();
-
-
-                            Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
-
-
-
+                            listView1.Items.Remove(listview1);
                         }
 
-                    }
-                    foreach (Process p in proc)
-                    {
-                        p.Kill();
-                    }
+                    Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
+
                 }
-
-
-                else
-                {
-                    MessageBox.Show("선택된 프로세스가 없습니다.");
-                }
-
 
 
             }
+
         }
 
         // 검색 버튼 클릭 시 이벤트
@@ -379,13 +365,11 @@ namespace icom
             }
         }
 
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
 
-
-
-
+        }
     }
-
-
     //sort
     public class ItemComparer : System.Collections.IComparer
     {
