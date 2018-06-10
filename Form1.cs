@@ -1,4 +1,5 @@
 using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 //using ListViewColumSortDLL;
@@ -11,7 +12,8 @@ using System.Diagnostics;
 using System.Net;
 using Microsoft.Win32;
 using System.Collections;
-
+using System.Security.Principal;
+using System.Management;
 namespace icom
 {
     public partial class Form1 : MetroFramework.Forms.MetroForm
@@ -41,7 +43,7 @@ namespace icom
             try
             {
                 Process[] proc = Process.GetProcesses();
-             //   listView1.CheckBoxes = true;
+               // listView1.CheckBoxes = true;
                 Process_Num_Value.Text = Convert.ToString(proc.Length);
                 foreach (Process p in proc)
                 {
@@ -125,10 +127,32 @@ namespace icom
             }
         }
 
+        // 프로세스의 사용자 이름을 불러오도록 도와주는 함수
+        public string GetProcessUsername(int processId)
+        {
+            string query = "Select * From Win32_Process Where ProcessID = " + processId;
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
+            ManagementObjectCollection processList = searcher.Get();
+
+            foreach (ManagementObject mgo in processList)
+            {
+                string[] argList = new string[] { string.Empty, string.Empty };
+                int username = Convert.ToInt32(mgo.InvokeMethod("getowner", argList));
+                if (username == 0)
+                {
+                    return argList[1] + "\\" + argList[0];
+                }
+            }
+            return "System";
+        }
+
+
         //프로세스의 정보를 불러와 listView1이 아이템으로 추가
         private void WriteProcessInfo(Process processInfo)
         {
-            string[] row = { Convert.ToString(processInfo.ProcessName), Convert.ToString(processInfo.Id), Convert.ToString((processInfo.VirtualMemorySize64 / 1024) / 1024)
+
+            string name1 = GetProcessUsername(processInfo.Id);
+            string[] row = { Convert.ToString(processInfo.ProcessName), Convert.ToString(processInfo.Id), Convert.ToString((processInfo.VirtualMemorySize64 / 1024) / 1024),Convert.ToString(name1)
  };
             var listViewItem = new ListViewItem(row);
             listView1.Items.Add(listViewItem);
@@ -160,6 +184,12 @@ namespace icom
                 // Process id
 
                 ItemSort.sort(listView1, e, true);
+            }
+            else if (e.Column == 3)
+            {
+                //Process Username
+
+                ItemSort.sort(listView1, e, false);
             }
             else
             {
@@ -238,7 +268,11 @@ namespace icom
         // 프로세스 종료 이벤트
         private void Process_Stop_Button_Click(object sender, EventArgs e)
         {
-            // 프로세스 하나씩 삭제 구현
+
+            if (MessageBox.Show("정말 선택항목을 종료하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+                // 프로세스 하나씩 삭제 구현
                 if (listView1.SelectedItems.Count > 0)
                 {
 
@@ -246,27 +280,30 @@ namespace icom
                     listView1.Items[0].Selected = false;
 
 
-                    string id = listView1.SelectedItems[0].SubItems[1].Text;
-                    string name = listView1.SelectedItems[0].SubItems[0].Text;
-                    Console.WriteLine("프로세스 id : {0}", id);
-                    if (MessageBox.Show(name + "종료하시겠습니까?", "취소", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    string processname = listView1.SelectedItems[0].SubItems[0].Text;
+                    if (MessageBox.Show("'"+processname +"'"+ " 을(를) 종료하시겠습니까?", "취소", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        Process[] proc = Process.GetProcessesByName(name);
+                        Process[] proc = Process.GetProcessesByName(processname);
 
-                            foreach (Process p in proc)
-                            {
-                                p.Kill();
-                            }
-                            foreach(ListViewItem listview1 in listView1.SelectedItems)
+                        foreach (Process p in proc)
+                        {
+                            p.Kill();
+                        }
+                        foreach (ListViewItem listview1 in listView1.SelectedItems)
                         {
                             listView1.Items.Remove(listview1);
                         }
 
-                    Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
+                        Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
+
+                    }
+
 
                 }
-
-
+                else
+                {
+                    MessageBox.Show("선택된 프로세스가 없습니다.");
+                }
             }
 
         }
@@ -365,8 +402,50 @@ namespace icom
             }
         }
 
-        private void tabPage3_Click(object sender, EventArgs e)
+        // 사용자 이름이 System일 경우 목록에서 제외시켜 주는 버튼
+        private void System_Hiding_Click(object sender, EventArgs e)
         {
+
+            if (listView1.Items.Count > 0)
+            {
+
+                for (int i = listView1.Items.Count - 1; i >= 0; i--)
+                {
+
+
+                    if (listView1.Items[i].SubItems[3].Text == "System")
+                    {
+                        listView1.Items.Remove(listView1.Items[i]);
+                        Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
+
+                    }
+                }
+
+            }
+        }
+        // System 프로세스를 포함한 모든 프로세스로 되돌려주는 버튼
+        private void Process_Revert_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+
+            try
+            {
+
+                Process[] proc = Process.GetProcesses();
+                listView1.CheckBoxes = true;
+                Process_Num_Value.Text = Convert.ToString(proc.Length);
+                foreach (Process p in proc)
+                {
+                    WriteProcessInfo(p);
+                    Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
         }
     }

@@ -31,10 +31,10 @@ namespace icom
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar2 = new MetroFramework.Controls.MetroProgressBar();
@@ -60,6 +60,7 @@ namespace icom
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.System_Hiding = new MetroFramework.Controls.MetroButton();
             this.NextButton_Search = new MetroFramework.Controls.MetroButton();
             this.SearchButton = new MetroFramework.Controls.MetroButton();
             this.SearchBox = new System.Windows.Forms.TextBox();
@@ -69,6 +70,7 @@ namespace icom
             this.Process_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Process_Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Process_Memory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Process_Username = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Process_Num_Value = new MetroFramework.Controls.MetroLabel();
             this.lProcess_Num = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -79,6 +81,7 @@ namespace icom
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.Process_Revert = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRAM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCPU)).BeginInit();
@@ -138,23 +141,23 @@ namespace icom
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(39, 160);
             this.chart1.Margin = new System.Windows.Forms.Padding(4);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "CPU";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "RAM";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "CPU";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "RAM";
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(959, 367);
             this.chart1.TabIndex = 5;
             this.chart1.Text = "chart1";
@@ -255,7 +258,6 @@ namespace icom
             // pictureBox1
             //
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::icom.Properties.Resources.안정;
             this.pictureBox1.Location = new System.Drawing.Point(1018, 334);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(270, 170);
@@ -351,6 +353,8 @@ namespace icom
             //
             // tabPage3
             //
+            this.tabPage3.Controls.Add(this.Process_Revert);
+            this.tabPage3.Controls.Add(this.System_Hiding);
             this.tabPage3.Controls.Add(this.NextButton_Search);
             this.tabPage3.Controls.Add(this.SearchButton);
             this.tabPage3.Controls.Add(this.SearchBox);
@@ -366,7 +370,16 @@ namespace icom
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Background & Foreground Manager";
             this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            //
+            // System_Hiding
+            //
+            this.System_Hiding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.System_Hiding.Location = new System.Drawing.Point(1117, 406);
+            this.System_Hiding.Name = "System_Hiding";
+            this.System_Hiding.Size = new System.Drawing.Size(125, 40);
+            this.System_Hiding.TabIndex = 8;
+            this.System_Hiding.Text = "System 숨기기";
+            this.System_Hiding.Click += new System.EventHandler(this.System_Hiding_Click);
             //
             // NextButton_Search
             //
@@ -409,11 +422,11 @@ namespace icom
             // Process_End_Button
             //
             this.Process_End_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Process_End_Button.Location = new System.Drawing.Point(953, 460);
+            this.Process_End_Button.Location = new System.Drawing.Point(1117, 469);
             this.Process_End_Button.Name = "Process_End_Button";
             this.Process_End_Button.Size = new System.Drawing.Size(90, 40);
             this.Process_End_Button.TabIndex = 3;
-            this.Process_End_Button.Text = "종료";
+            this.Process_End_Button.Text = "프로세스 중지";
             this.Process_End_Button.Click += new System.EventHandler(this.Process_Stop_Button_Click);
             //
             // listView1
@@ -424,11 +437,12 @@ namespace icom
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Process_Name,
             this.Process_Id,
-            this.Process_Memory});
+            this.Process_Memory,
+            this.Process_Username});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(30, 115);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(885, 394);
+            this.listView1.Size = new System.Drawing.Size(1036, 394);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -444,13 +458,19 @@ namespace icom
             this.Process_Id.Tag = "Numeric ";
             this.Process_Id.Text = "Process_Id";
             this.Process_Id.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Process_Id.Width = 196;
+            this.Process_Id.Width = 180;
             //
             // Process_Memory
             //
             this.Process_Memory.Text = "Process_MemorySize(MB)";
             this.Process_Memory.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Process_Memory.Width = 246;
+            //
+            // Process_Username
+            //
+            this.Process_Username.Text = "Process_Username";
+            this.Process_Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Process_Username.Width = 200;
             //
             // Process_Num_Value
             //
@@ -574,6 +594,16 @@ namespace icom
             this.tabPage5.Text = "About";
             this.tabPage5.UseVisualStyleBackColor = true;
             //
+            // Process_Revert
+            //
+            this.Process_Revert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Process_Revert.Location = new System.Drawing.Point(1117, 345);
+            this.Process_Revert.Name = "Process_Revert";
+            this.Process_Revert.Size = new System.Drawing.Size(125, 40);
+            this.Process_Revert.TabIndex = 9;
+            this.Process_Revert.Text = "모든 프로세스";
+            this.Process_Revert.Click += new System.EventHandler(this.Process_Revert_Click);
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -652,5 +682,8 @@ namespace icom
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroButton NextButton_Search;
         private System.Windows.Forms.ColumnHeader Process_Memory;
+        private System.Windows.Forms.ColumnHeader Process_Username;
+        private MetroFramework.Controls.MetroButton System_Hiding;
+        private MetroFramework.Controls.MetroButton Process_Revert;
     }
 }
