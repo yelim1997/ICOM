@@ -60,6 +60,10 @@ namespace icom
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.user_name_value = new MetroFramework.Controls.MetroLabel();
+            this.System_User = new System.Windows.Forms.Label();
+            this.Process_Revert = new MetroFramework.Controls.MetroButton();
+            this.System_Hiding = new MetroFramework.Controls.MetroButton();
             this.NextButton_Search = new MetroFramework.Controls.MetroButton();
             this.SearchButton = new MetroFramework.Controls.MetroButton();
             this.SearchBox = new System.Windows.Forms.TextBox();
@@ -69,6 +73,7 @@ namespace icom
             this.Process_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Process_Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Process_Memory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Process_Username = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Process_Num_Value = new MetroFramework.Controls.MetroLabel();
             this.lProcess_Num = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -314,172 +319,220 @@ namespace icom
             this.label10.TabIndex = 1;
             this.label10.Text = "Program Count";
             //
-            // listView2
-            //
-            this.listView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView2.CheckBoxes = true;
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
-            this.listView2.Location = new System.Drawing.Point(30, 73);
-            this.listView2.Margin = new System.Windows.Forms.Padding(2);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(885, 436);
-            this.listView2.TabIndex = 0;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            this.listView2.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListView2_ColumnClick);
-            //
-            // columnHeader1
-            //
-            this.columnHeader1.Text = "";
-            this.columnHeader1.Width = 20;
-            //
-            // columnHeader2
-            //
-            this.columnHeader2.Text = "Program Name";
-            this.columnHeader2.Width = 300;
-            //
-            // columnHeader3
-            //
-            this.columnHeader3.Text = "Install Date";
-            this.columnHeader3.Width = 150;
-            //
-            // columnHeader4
-            //
-            this.columnHeader4.Text = "Memory";
-            this.columnHeader4.Width = 150;
-            //
-            // tabPage3
-            //
-            this.tabPage3.Controls.Add(this.NextButton_Search);
-            this.tabPage3.Controls.Add(this.SearchButton);
-            this.tabPage3.Controls.Add(this.SearchBox);
-            this.tabPage3.Controls.Add(this.lProcess_Name);
-            this.tabPage3.Controls.Add(this.Process_End_Button);
-            this.tabPage3.Controls.Add(this.listView1);
-            this.tabPage3.Controls.Add(this.Process_Num_Value);
-            this.tabPage3.Controls.Add(this.lProcess_Num);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1316, 534);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Background & Foreground Manager";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
-            //
-            // NextButton_Search
-            //
-            this.NextButton_Search.Location = new System.Drawing.Point(617, 29);
-            this.NextButton_Search.Name = "NextButton_Search";
-            this.NextButton_Search.Size = new System.Drawing.Size(75, 23);
-            this.NextButton_Search.TabIndex = 7;
-            this.NextButton_Search.Text = "다음";
-            this.NextButton_Search.Click += new System.EventHandler(this.NextButton_Search_Click);
-            //
-            // SearchButton
-            //
-            this.SearchButton.Location = new System.Drawing.Point(518, 29);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(75, 23);
-            this.SearchButton.TabIndex = 6;
-            this.SearchButton.Text = "검색";
-            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
-            //
-            // SearchBox
-            //
-            this.SearchBox.Location = new System.Drawing.Point(130, 29);
-            this.SearchBox.Name = "SearchBox";
-            this.SearchBox.Size = new System.Drawing.Size(359, 25);
-            this.SearchBox.TabIndex = 5;
-            this.SearchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_Enter);
-            //
-            // lProcess_Name
-            //
-            this.lProcess_Name.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lProcess_Name.AutoSize = true;
-            this.lProcess_Name.Location = new System.Drawing.Point(27, 29);
-            this.lProcess_Name.Name = "lProcess_Name";
-            this.lProcess_Name.Size = new System.Drawing.Size(97, 15);
-            this.lProcess_Name.TabIndex = 4;
-            this.lProcess_Name.Text = "프로세스 명 :";
-            //
-            // Process_End_Button
-            //
-            this.Process_End_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Process_End_Button.Location = new System.Drawing.Point(953, 460);
-            this.Process_End_Button.Name = "Process_End_Button";
-            this.Process_End_Button.Size = new System.Drawing.Size(90, 40);
-            this.Process_End_Button.TabIndex = 3;
-            this.Process_End_Button.Text = "종료";
-            this.Process_End_Button.Click += new System.EventHandler(this.Process_Stop_Button_Click);
-            //
-            // listView1
-            //
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Process_Name,
-            this.Process_Id,
-            this.Process_Memory});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(30, 115);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(885, 394);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListView1_ColumnClick);
-            //
-            // Process_Name
-            //
-            this.Process_Name.Text = "ProcessName";
-            this.Process_Name.Width = 249;
-            //
-            // Process_Id
-            //
-            this.Process_Id.Tag = "Numeric ";
-            this.Process_Id.Text = "Process_Id";
-            this.Process_Id.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Process_Id.Width = 196;
-            //
-            // Process_Memory
-            //
-            this.Process_Memory.Text = "Process_MemorySize(MB)";
-            this.Process_Memory.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Process_Memory.Width = 246;
-            //
-            // Process_Num_Value
-            //
-            this.Process_Num_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Process_Num_Value.AutoSize = true;
-            this.Process_Num_Value.Location = new System.Drawing.Point(130, 73);
-            this.Process_Num_Value.Name = "Process_Num_Value";
-            this.Process_Num_Value.Size = new System.Drawing.Size(87, 20);
-            this.Process_Num_Value.TabIndex = 1;
-            this.Process_Num_Value.Text = "metroLabel3";
-            //
-            // lProcess_Num
-            //
-            this.lProcess_Num.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lProcess_Num.AutoSize = true;
-            this.lProcess_Num.Location = new System.Drawing.Point(27, 78);
-            this.lProcess_Num.Name = "lProcess_Num";
-            this.lProcess_Num.Size = new System.Drawing.Size(97, 15);
-            this.lProcess_Num.TabIndex = 0;
-            this.lProcess_Num.Text = "프로세스 수 :";
+              // listView2
+              //
+              this.listView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+              | System.Windows.Forms.AnchorStyles.Left)
+              | System.Windows.Forms.AnchorStyles.Right)));
+              this.listView2.CheckBoxes = true;
+              this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+              this.columnHeader1,
+              this.columnHeader2,
+              this.columnHeader3,
+              this.columnHeader4});
+              this.listView2.Location = new System.Drawing.Point(30, 73);
+              this.listView2.Margin = new System.Windows.Forms.Padding(2);
+              this.listView2.Name = "listView2";
+              this.listView2.Size = new System.Drawing.Size(885, 436);
+              this.listView2.TabIndex = 0;
+              this.listView2.UseCompatibleStateImageBehavior = false;
+              this.listView2.View = System.Windows.Forms.View.Details;
+              this.listView2.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListView2_ColumnClick);
+              //
+              // columnHeader1
+              //
+              this.columnHeader1.Text = "";
+              this.columnHeader1.Width = 20;
+              //
+              // columnHeader2
+              //
+              this.columnHeader2.Text = "Program Name";
+              this.columnHeader2.Width = 300;
+              //
+              // columnHeader3
+              //
+              this.columnHeader3.Text = "Install Date";
+              this.columnHeader3.Width = 150;
+              //
+              // columnHeader4
+              //
+              this.columnHeader4.Text = "Memory";
+              this.columnHeader4.Width = 150;
+              //
+              // tabPage3
+              //
+              this.tabPage3.Controls.Add(this.user_name_value);
+              this.tabPage3.Controls.Add(this.System_User);
+              this.tabPage3.Controls.Add(this.Process_Revert);
+              this.tabPage3.Controls.Add(this.System_Hiding);
+              this.tabPage3.Controls.Add(this.NextButton_Search);
+              this.tabPage3.Controls.Add(this.SearchButton);
+              this.tabPage3.Controls.Add(this.SearchBox);
+              this.tabPage3.Controls.Add(this.lProcess_Name);
+              this.tabPage3.Controls.Add(this.Process_End_Button);
+              this.tabPage3.Controls.Add(this.listView1);
+              this.tabPage3.Controls.Add(this.Process_Num_Value);
+              this.tabPage3.Controls.Add(this.lProcess_Num);
+              this.tabPage3.Location = new System.Drawing.Point(4, 25);
+              this.tabPage3.Name = "tabPage3";
+              this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+              this.tabPage3.Size = new System.Drawing.Size(1316, 534);
+              this.tabPage3.TabIndex = 2;
+              this.tabPage3.Text = "Background & Foreground Manager";
+              this.tabPage3.UseVisualStyleBackColor = true;
+              //
+              // user_name_value
+              //
+              this.user_name_value.AutoSize = true;
+              this.user_name_value.Location = new System.Drawing.Point(1101, 293);
+              this.user_name_value.Name = "user_name_value";
+              this.user_name_value.Size = new System.Drawing.Size(116, 20);
+              this.user_name_value.TabIndex = 12;
+              this.user_name_value.Text = "user_name_value";
+              //
+              // System_User
+              //
+              this.System_User.AutoSize = true;
+              this.System_User.Location = new System.Drawing.Point(1098, 264);
+              this.System_User.Name = "System_User";
+              this.System_User.Size = new System.Drawing.Size(112, 15);
+              this.System_User.TabIndex = 10;
+              this.System_User.Text = "시스템 사용자 :";
+              //
+              // Process_Revert
+              //
+              this.Process_Revert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+              this.Process_Revert.Location = new System.Drawing.Point(1117, 345);
+              this.Process_Revert.Name = "Process_Revert";
+              this.Process_Revert.Size = new System.Drawing.Size(125, 40);
+              this.Process_Revert.TabIndex = 9;
+              this.Process_Revert.Text = "모든 프로세스";
+              this.Process_Revert.Click += new System.EventHandler(this.Process_Revert_Click);
+              //
+              // System_Hiding
+              //
+              this.System_Hiding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+              this.System_Hiding.Location = new System.Drawing.Point(1117, 406);
+              this.System_Hiding.Name = "System_Hiding";
+              this.System_Hiding.Size = new System.Drawing.Size(125, 40);
+              this.System_Hiding.TabIndex = 8;
+              this.System_Hiding.Text = "System 숨기기";
+              this.System_Hiding.Click += new System.EventHandler(this.System_Hiding_Click);
+              //
+              // NextButton_Search
+              //
+              this.NextButton_Search.Location = new System.Drawing.Point(617, 29);
+              this.NextButton_Search.Name = "NextButton_Search";
+              this.NextButton_Search.Size = new System.Drawing.Size(75, 23);
+              this.NextButton_Search.TabIndex = 7;
+              this.NextButton_Search.Text = "다음";
+              this.NextButton_Search.Click += new System.EventHandler(this.NextButton_Search_Click);
+              //
+              // SearchButton
+              //
+              this.SearchButton.Location = new System.Drawing.Point(518, 29);
+              this.SearchButton.Name = "SearchButton";
+              this.SearchButton.Size = new System.Drawing.Size(75, 23);
+              this.SearchButton.TabIndex = 6;
+              this.SearchButton.Text = "검색";
+              this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+              //
+              // SearchBox
+              //
+              this.SearchBox.Location = new System.Drawing.Point(130, 29);
+              this.SearchBox.Name = "SearchBox";
+              this.SearchBox.Size = new System.Drawing.Size(359, 25);
+              this.SearchBox.TabIndex = 5;
+              this.SearchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_Enter);
+              //
+              // lProcess_Name
+              //
+              this.lProcess_Name.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+              | System.Windows.Forms.AnchorStyles.Left)
+              | System.Windows.Forms.AnchorStyles.Right)));
+              this.lProcess_Name.AutoSize = true;
+              this.lProcess_Name.Location = new System.Drawing.Point(27, 29);
+              this.lProcess_Name.Name = "lProcess_Name";
+              this.lProcess_Name.Size = new System.Drawing.Size(97, 15);
+              this.lProcess_Name.TabIndex = 4;
+              this.lProcess_Name.Text = "프로세스 명 :";
+              //
+              // Process_End_Button
+              //
+              this.Process_End_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+              this.Process_End_Button.Location = new System.Drawing.Point(1117, 469);
+              this.Process_End_Button.Name = "Process_End_Button";
+              this.Process_End_Button.Size = new System.Drawing.Size(90, 40);
+              this.Process_End_Button.TabIndex = 3;
+              this.Process_End_Button.Text = "프로세스 중지";
+              this.Process_End_Button.Click += new System.EventHandler(this.Process_Stop_Button_Click);
+              //
+              // listView1
+              //
+              this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+              | System.Windows.Forms.AnchorStyles.Left)
+              | System.Windows.Forms.AnchorStyles.Right)));
+              this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+              this.Process_Name,
+              this.Process_Id,
+              this.Process_Memory,
+              this.Process_Username});
+              this.listView1.HideSelection = false;
+              this.listView1.Location = new System.Drawing.Point(30, 115);
+              this.listView1.Name = "listView1";
+              this.listView1.Size = new System.Drawing.Size(1036, 394);
+              this.listView1.TabIndex = 2;
+              this.listView1.UseCompatibleStateImageBehavior = false;
+              this.listView1.View = System.Windows.Forms.View.Details;
+              this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListView1_ColumnClick);
+              //
+              // Process_Name
+              //
+              this.Process_Name.Text = "ProcessName";
+              this.Process_Name.Width = 249;
+              //
+              // Process_Id
+              //
+              this.Process_Id.Tag = "Numeric ";
+              this.Process_Id.Text = "Process_Id";
+              this.Process_Id.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+              this.Process_Id.Width = 180;
+              //
+              // Process_Memory
+              //
+              this.Process_Memory.Text = "Process_MemorySize(MB)";
+              this.Process_Memory.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+              this.Process_Memory.Width = 246;
+              //
+              // Process_Username
+              //
+              this.Process_Username.Text = "Process_Username";
+              this.Process_Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+              this.Process_Username.Width = 200;
+              //
+              // Process_Num_Value
+              //
+              this.Process_Num_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+              | System.Windows.Forms.AnchorStyles.Left)
+              | System.Windows.Forms.AnchorStyles.Right)));
+              this.Process_Num_Value.AutoSize = true;
+              this.Process_Num_Value.Location = new System.Drawing.Point(130, 73);
+              this.Process_Num_Value.Name = "Process_Num_Value";
+              this.Process_Num_Value.Size = new System.Drawing.Size(87, 20);
+              this.Process_Num_Value.TabIndex = 1;
+              this.Process_Num_Value.Text = "metroLabel3";
+              //
+              // lProcess_Num
+              //
+              this.lProcess_Num.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+              | System.Windows.Forms.AnchorStyles.Left)
+              | System.Windows.Forms.AnchorStyles.Right)));
+              this.lProcess_Num.AutoSize = true;
+              this.lProcess_Num.Location = new System.Drawing.Point(27, 78);
+              this.lProcess_Num.Name = "lProcess_Num";
+              this.lProcess_Num.Size = new System.Drawing.Size(97, 15);
+              this.lProcess_Num.TabIndex = 0;
+              this.lProcess_Num.Text = "프로세스 수 :";
             //
             // tabPage4
             //
@@ -710,6 +763,11 @@ namespace icom
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroButton NextButton_Search;
         private System.Windows.Forms.ColumnHeader Process_Memory;
+        private System.Windows.Forms.ColumnHeader Process_Username;
+        private MetroFramework.Controls.MetroButton System_Hiding;
+        private MetroFramework.Controls.MetroButton Process_Revert;
+        private System.Windows.Forms.Label System_User;
+        private MetroFramework.Controls.MetroLabel user_name_value;
         private System.Windows.Forms.Label ProgrameInfo;
         private System.Windows.Forms.Label GitHub;
         private System.Windows.Forms.Label CreaterInfo;
