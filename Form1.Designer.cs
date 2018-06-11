@@ -36,20 +36,20 @@ namespace icom
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
-            this.metroProgressBar2 = new MetroFramework.Controls.MetroProgressBar();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.CpuBar = new MetroFramework.Controls.MetroProgressBar();
+            this.MemBar = new MetroFramework.Controls.MetroProgressBar();
+            this.CpuValue = new MetroFramework.Controls.MetroLabel();
+            this.MemValue = new MetroFramework.Controls.MetroLabel();
+            this.CpuMemChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pRAM = new System.Diagnostics.PerformanceCounter();
             this.pCPU = new System.Diagnostics.PerformanceCounter();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.cpu = new System.Windows.Forms.Label();
+            this.ram = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.NumSet = new System.Windows.Forms.Button();
+            this.Plabel = new System.Windows.Forms.Label();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
@@ -60,7 +60,6 @@ namespace icom
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.System_Hiding = new MetroFramework.Controls.MetroButton();
             this.NextButton_Search = new MetroFramework.Controls.MetroButton();
             this.SearchButton = new MetroFramework.Controls.MetroButton();
             this.SearchBox = new System.Windows.Forms.TextBox();
@@ -70,27 +69,30 @@ namespace icom
             this.Process_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Process_Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Process_Memory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Process_Username = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Process_Num_Value = new MetroFramework.Controls.MetroLabel();
             this.lProcess_Num = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.MouseSpeed = new System.Windows.Forms.Label();
+            this.NetworkCon = new System.Windows.Forms.Label();
+            this.UserDomain = new System.Windows.Forms.Label();
+            this.BootMode = new System.Windows.Forms.Label();
+            this.UserName = new System.Windows.Forms.Label();
+            this.PcName = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.Process_Revert = new MetroFramework.Controls.MetroButton();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.ProgrameInfo = new System.Windows.Forms.Label();
+            this.GitHub = new System.Windows.Forms.Label();
+            this.CreaterInfo = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.CpuMemChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRAM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCPU)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             //
             // timer1
@@ -98,56 +100,56 @@ namespace icom
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             //
-            // metroProgressBar1
+            // CpuBar
             //
-            this.metroProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.CpuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroProgressBar1.Location = new System.Drawing.Point(90, 47);
-            this.metroProgressBar1.Name = "metroProgressBar1";
-            this.metroProgressBar1.Size = new System.Drawing.Size(1036, 36);
-            this.metroProgressBar1.TabIndex = 0;
+            this.CpuBar.Location = new System.Drawing.Point(90, 47);
+            this.CpuBar.Name = "CpuBar";
+            this.CpuBar.Size = new System.Drawing.Size(1036, 36);
+            this.CpuBar.TabIndex = 0;
             //
-            // metroProgressBar2
+            // MemBar
             //
-            this.metroProgressBar2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MemBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroProgressBar2.Location = new System.Drawing.Point(90, 105);
-            this.metroProgressBar2.Name = "metroProgressBar2";
-            this.metroProgressBar2.Size = new System.Drawing.Size(1036, 36);
-            this.metroProgressBar2.TabIndex = 1;
+            this.MemBar.Location = new System.Drawing.Point(90, 105);
+            this.MemBar.Name = "MemBar";
+            this.MemBar.Size = new System.Drawing.Size(1036, 36);
+            this.MemBar.TabIndex = 1;
             //
-            // metroLabel1
+            // CpuValue
             //
-            this.metroLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(1144, 58);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(84, 20);
-            this.metroLabel1.TabIndex = 2;
-            this.metroLabel1.Text = "metroLabel1";
+            this.CpuValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CpuValue.AutoSize = true;
+            this.CpuValue.Location = new System.Drawing.Point(1144, 58);
+            this.CpuValue.Name = "CpuValue";
+            this.CpuValue.Size = new System.Drawing.Size(84, 20);
+            this.CpuValue.TabIndex = 2;
+            this.CpuValue.Text = "metroLabel1";
             //
-            // metroLabel2
+            // MemValue
             //
-            this.metroLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(1141, 121);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(87, 20);
-            this.metroLabel2.TabIndex = 3;
-            this.metroLabel2.Text = "metroLabel2";
+            this.MemValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MemValue.AutoSize = true;
+            this.MemValue.Location = new System.Drawing.Point(1141, 121);
+            this.MemValue.Name = "MemValue";
+            this.MemValue.Size = new System.Drawing.Size(87, 20);
+            this.MemValue.TabIndex = 3;
+            this.MemValue.Text = "metroLabel2";
             //
-            // chart1
+            // CpuMemChart
             //
-            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.CpuMemChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
+            this.CpuMemChart.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(39, 160);
-            this.chart1.Margin = new System.Windows.Forms.Padding(4);
-            this.chart1.Name = "chart1";
+            this.CpuMemChart.Legends.Add(legend2);
+            this.CpuMemChart.Location = new System.Drawing.Point(39, 160);
+            this.CpuMemChart.Margin = new System.Windows.Forms.Padding(4);
+            this.CpuMemChart.Name = "CpuMemChart";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.Legend = "Legend1";
@@ -156,11 +158,11 @@ namespace icom
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series4.Legend = "Legend1";
             series4.Name = "RAM";
-            this.chart1.Series.Add(series3);
-            this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(959, 367);
-            this.chart1.TabIndex = 5;
-            this.chart1.Text = "chart1";
+            this.CpuMemChart.Series.Add(series3);
+            this.CpuMemChart.Series.Add(series4);
+            this.CpuMemChart.Size = new System.Drawing.Size(959, 367);
+            this.CpuMemChart.TabIndex = 5;
+            this.CpuMemChart.Text = "chart1";
             //
             // pRAM
             //
@@ -173,29 +175,29 @@ namespace icom
             this.pCPU.CounterName = "% Processor Time";
             this.pCPU.InstanceName = "_Total";
             //
-            // label1
+            // cpu
             //
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.cpu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 58);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 15);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "CPU :";
+            this.cpu.AutoSize = true;
+            this.cpu.Location = new System.Drawing.Point(18, 58);
+            this.cpu.Name = "cpu";
+            this.cpu.Size = new System.Drawing.Size(47, 15);
+            this.cpu.TabIndex = 6;
+            this.cpu.Text = "CPU :";
             //
-            // label2
+            // ram
             //
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.ram.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 117);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 15);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "RAM :";
+            this.ram.AutoSize = true;
+            this.ram.Location = new System.Drawing.Point(18, 117);
+            this.ram.Name = "ram";
+            this.ram.Size = new System.Drawing.Size(48, 15);
+            this.ram.TabIndex = 7;
+            this.ram.Text = "RAM :";
             //
             // tabControl1
             //
@@ -215,16 +217,16 @@ namespace icom
             //
             // tabPage1
             //
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.label11);
-            this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Controls.Add(this.metroProgressBar1);
-            this.tabPage1.Controls.Add(this.metroLabel2);
-            this.tabPage1.Controls.Add(this.chart1);
-            this.tabPage1.Controls.Add(this.metroLabel1);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.metroProgressBar2);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.NumSet);
+            this.tabPage1.Controls.Add(this.Plabel);
+            this.tabPage1.Controls.Add(this.pictureBox);
+            this.tabPage1.Controls.Add(this.CpuBar);
+            this.tabPage1.Controls.Add(this.MemValue);
+            this.tabPage1.Controls.Add(this.CpuMemChart);
+            this.tabPage1.Controls.Add(this.CpuValue);
+            this.tabPage1.Controls.Add(this.ram);
+            this.tabPage1.Controls.Add(this.MemBar);
+            this.tabPage1.Controls.Add(this.cpu);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -233,36 +235,37 @@ namespace icom
             this.tabPage1.Text = "CPU & RAM Manager";
             this.tabPage1.UseVisualStyleBackColor = true;
             //
-            // button1
+            // NumSet
             //
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(1188, 269);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 40);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "기준치 설정";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.NumSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.NumSet.Location = new System.Drawing.Point(1188, 269);
+            this.NumSet.Name = "NumSet";
+            this.NumSet.Size = new System.Drawing.Size(100, 40);
+            this.NumSet.TabIndex = 10;
+            this.NumSet.Text = "기준치 설정";
+            this.NumSet.UseVisualStyleBackColor = true;
+            this.NumSet.Click += new System.EventHandler(this.Button1_Click);
             //
-            // label11
+            // Plabel
             //
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label11.Location = new System.Drawing.Point(1028, 278);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(135, 20);
-            this.label11.TabIndex = 9;
-            this.label11.Text = "현재 cpu 상태";
+            this.Plabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Plabel.AutoSize = true;
+            this.Plabel.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Plabel.Location = new System.Drawing.Point(1028, 278);
+            this.Plabel.Name = "Plabel";
+            this.Plabel.Size = new System.Drawing.Size(135, 20);
+            this.Plabel.TabIndex = 9;
+            this.Plabel.Text = "현재 cpu 상태";
             //
-            // pictureBox1
+            // pictureBox
             //
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(1018, 334);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(270, 170);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox.Image = global::icom.Properties.Resources.안정;
+            this.pictureBox.Location = new System.Drawing.Point(1018, 334);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(270, 170);
+            this.pictureBox.TabIndex = 8;
+            this.pictureBox.TabStop = false;
             //
             // tabPage2
             //
@@ -353,8 +356,6 @@ namespace icom
             //
             // tabPage3
             //
-            this.tabPage3.Controls.Add(this.Process_Revert);
-            this.tabPage3.Controls.Add(this.System_Hiding);
             this.tabPage3.Controls.Add(this.NextButton_Search);
             this.tabPage3.Controls.Add(this.SearchButton);
             this.tabPage3.Controls.Add(this.SearchBox);
@@ -370,16 +371,7 @@ namespace icom
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Background & Foreground Manager";
             this.tabPage3.UseVisualStyleBackColor = true;
-            //
-            // System_Hiding
-            //
-            this.System_Hiding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.System_Hiding.Location = new System.Drawing.Point(1117, 406);
-            this.System_Hiding.Name = "System_Hiding";
-            this.System_Hiding.Size = new System.Drawing.Size(125, 40);
-            this.System_Hiding.TabIndex = 8;
-            this.System_Hiding.Text = "System 숨기기";
-            this.System_Hiding.Click += new System.EventHandler(this.System_Hiding_Click);
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             //
             // NextButton_Search
             //
@@ -422,11 +414,11 @@ namespace icom
             // Process_End_Button
             //
             this.Process_End_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Process_End_Button.Location = new System.Drawing.Point(1117, 469);
+            this.Process_End_Button.Location = new System.Drawing.Point(953, 460);
             this.Process_End_Button.Name = "Process_End_Button";
             this.Process_End_Button.Size = new System.Drawing.Size(90, 40);
             this.Process_End_Button.TabIndex = 3;
-            this.Process_End_Button.Text = "프로세스 중지";
+            this.Process_End_Button.Text = "종료";
             this.Process_End_Button.Click += new System.EventHandler(this.Process_Stop_Button_Click);
             //
             // listView1
@@ -437,12 +429,11 @@ namespace icom
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Process_Name,
             this.Process_Id,
-            this.Process_Memory,
-            this.Process_Username});
+            this.Process_Memory});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(30, 115);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1036, 394);
+            this.listView1.Size = new System.Drawing.Size(885, 394);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -458,19 +449,13 @@ namespace icom
             this.Process_Id.Tag = "Numeric ";
             this.Process_Id.Text = "Process_Id";
             this.Process_Id.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Process_Id.Width = 180;
+            this.Process_Id.Width = 196;
             //
             // Process_Memory
             //
             this.Process_Memory.Text = "Process_MemorySize(MB)";
             this.Process_Memory.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Process_Memory.Width = 246;
-            //
-            // Process_Username
-            //
-            this.Process_Username.Text = "Process_Username";
-            this.Process_Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Process_Username.Width = 200;
             //
             // Process_Num_Value
             //
@@ -498,12 +483,12 @@ namespace icom
             //
             // tabPage4
             //
-            this.tabPage4.Controls.Add(this.label8);
-            this.tabPage4.Controls.Add(this.label7);
-            this.tabPage4.Controls.Add(this.label6);
-            this.tabPage4.Controls.Add(this.label5);
-            this.tabPage4.Controls.Add(this.label4);
-            this.tabPage4.Controls.Add(this.label3);
+            this.tabPage4.Controls.Add(this.MouseSpeed);
+            this.tabPage4.Controls.Add(this.NetworkCon);
+            this.tabPage4.Controls.Add(this.UserDomain);
+            this.tabPage4.Controls.Add(this.BootMode);
+            this.tabPage4.Controls.Add(this.UserName);
+            this.tabPage4.Controls.Add(this.PcName);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -512,80 +497,91 @@ namespace icom
             this.tabPage4.Text = "System Information";
             this.tabPage4.UseVisualStyleBackColor = true;
             //
-            // label8
+            // MouseSpeed
             //
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.MouseSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(111, 371);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 15);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "label8";
+            this.MouseSpeed.AutoSize = true;
+            this.MouseSpeed.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.MouseSpeed.Location = new System.Drawing.Point(111, 371);
+            this.MouseSpeed.Name = "MouseSpeed";
+            this.MouseSpeed.Size = new System.Drawing.Size(57, 20);
+            this.MouseSpeed.TabIndex = 5;
+            this.MouseSpeed.Text = "label8";
             //
-            // label7
+            // NetworkCon
             //
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.NetworkCon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(111, 306);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 15);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "label7";
+            this.NetworkCon.AutoSize = true;
+            this.NetworkCon.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.NetworkCon.Location = new System.Drawing.Point(111, 306);
+            this.NetworkCon.Name = "NetworkCon";
+            this.NetworkCon.Size = new System.Drawing.Size(57, 20);
+            this.NetworkCon.TabIndex = 4;
+            this.NetworkCon.Text = "label7";
             //
-            // label6
+            // UserDomain
             //
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.UserDomain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(111, 245);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 15);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "label6";
+            this.UserDomain.AutoSize = true;
+            this.UserDomain.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.UserDomain.Location = new System.Drawing.Point(111, 245);
+            this.UserDomain.Name = "UserDomain";
+            this.UserDomain.Size = new System.Drawing.Size(57, 20);
+            this.UserDomain.TabIndex = 3;
+            this.UserDomain.Text = "label6";
             //
-            // label5
+            // BootMode
             //
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.BootMode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(111, 183);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 15);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "label5";
+            this.BootMode.AutoSize = true;
+            this.BootMode.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BootMode.Location = new System.Drawing.Point(111, 183);
+            this.BootMode.Name = "BootMode";
+            this.BootMode.Size = new System.Drawing.Size(57, 20);
+            this.BootMode.TabIndex = 2;
+            this.BootMode.Text = "label5";
             //
-            // label4
+            // UserName
             //
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.UserName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(111, 120);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 15);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "label4";
+            this.UserName.AutoSize = true;
+            this.UserName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.UserName.Location = new System.Drawing.Point(111, 120);
+            this.UserName.Name = "UserName";
+            this.UserName.Size = new System.Drawing.Size(57, 20);
+            this.UserName.TabIndex = 1;
+            this.UserName.Text = "label4";
             //
-            // label3
+            // PcName
             //
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.PcName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(111, 63);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 15);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "label3";
+            this.PcName.AutoSize = true;
+            this.PcName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.PcName.Location = new System.Drawing.Point(111, 63);
+            this.PcName.Name = "PcName";
+            this.PcName.Size = new System.Drawing.Size(57, 20);
+            this.PcName.TabIndex = 0;
+            this.PcName.Text = "label3";
             //
             // tabPage5
             //
+            this.tabPage5.Controls.Add(this.linkLabel1);
+            this.tabPage5.Controls.Add(this.ProgrameInfo);
+            this.tabPage5.Controls.Add(this.GitHub);
+            this.tabPage5.Controls.Add(this.CreaterInfo);
+            this.tabPage5.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -594,15 +590,45 @@ namespace icom
             this.tabPage5.Text = "About";
             this.tabPage5.UseVisualStyleBackColor = true;
             //
-            // Process_Revert
+            // linkLabel1
             //
-            this.Process_Revert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Process_Revert.Location = new System.Drawing.Point(1117, 345);
-            this.Process_Revert.Name = "Process_Revert";
-            this.Process_Revert.Size = new System.Drawing.Size(125, 40);
-            this.Process_Revert.TabIndex = 9;
-            this.Process_Revert.Text = "모든 프로세스";
-            this.Process_Revert.Click += new System.EventHandler(this.Process_Revert_Click);
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(258, 200);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(320, 20);
+            this.linkLabel1.TabIndex = 3;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://github.com/yelim1997/ICOM";
+            //
+            // ProgrameInfo
+            //
+            this.ProgrameInfo.AutoSize = true;
+            this.ProgrameInfo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ProgrameInfo.Location = new System.Drawing.Point(107, 271);
+            this.ProgrameInfo.Name = "ProgrameInfo";
+            this.ProgrameInfo.Size = new System.Drawing.Size(157, 20);
+            this.ProgrameInfo.TabIndex = 2;
+            this.ProgrameInfo.Text = "프로그램 소개 : ";
+            //
+            // GitHub
+            //
+            this.GitHub.AutoSize = true;
+            this.GitHub.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.GitHub.Location = new System.Drawing.Point(107, 200);
+            this.GitHub.Name = "GitHub";
+            this.GitHub.Size = new System.Drawing.Size(85, 20);
+            this.GitHub.TabIndex = 1;
+            this.GitHub.Text = "GitHub : ";
+            //
+            // CreaterInfo
+            //
+            this.CreaterInfo.AutoSize = true;
+            this.CreaterInfo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.CreaterInfo.Location = new System.Drawing.Point(107, 127);
+            this.CreaterInfo.Name = "CreaterInfo";
+            this.CreaterInfo.Size = new System.Drawing.Size(137, 20);
+            this.CreaterInfo.TabIndex = 0;
+            this.CreaterInfo.Text = "제작자 정보 : 버뮤다 ( 권예림, 최유진, 이정순 )";
             //
             // Form1
             //
@@ -614,19 +640,21 @@ namespace icom
             this.Text = "ICOM | Bermuda";
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Right;
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CpuMemChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRAM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCPU)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -639,27 +667,27 @@ namespace icom
         #endregion
 
         private System.Windows.Forms.Timer timer1;
-        private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
-        private MetroFramework.Controls.MetroProgressBar metroProgressBar2;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private MetroFramework.Controls.MetroProgressBar CpuBar;
+        private MetroFramework.Controls.MetroProgressBar MemBar;
+        private MetroFramework.Controls.MetroLabel CpuValue;
+        private MetroFramework.Controls.MetroLabel MemValue;
+        private System.Windows.Forms.DataVisualization.Charting.Chart CpuMemChart;
         private System.Diagnostics.PerformanceCounter pRAM;
         private System.Diagnostics.PerformanceCounter pCPU;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label cpu;
+        private System.Windows.Forms.Label ram;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label MouseSpeed;
+        private System.Windows.Forms.Label NetworkCon;
+        private System.Windows.Forms.Label UserDomain;
+        private System.Windows.Forms.Label BootMode;
+        private System.Windows.Forms.Label UserName;
+        private System.Windows.Forms.Label PcName;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader Process_Name;
         private System.Windows.Forms.ColumnHeader Process_Id;
@@ -671,9 +699,9 @@ namespace icom
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label Plabel;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Button NumSet;
         private MetroFramework.Controls.MetroButton metroButton2;
         private MetroFramework.Controls.MetroButton SearchButton;
         private System.Windows.Forms.TextBox SearchBox;
@@ -682,8 +710,9 @@ namespace icom
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroButton NextButton_Search;
         private System.Windows.Forms.ColumnHeader Process_Memory;
-        private System.Windows.Forms.ColumnHeader Process_Username;
-        private MetroFramework.Controls.MetroButton System_Hiding;
-        private MetroFramework.Controls.MetroButton Process_Revert;
+        private System.Windows.Forms.Label ProgrameInfo;
+        private System.Windows.Forms.Label GitHub;
+        private System.Windows.Forms.Label CreaterInfo;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
