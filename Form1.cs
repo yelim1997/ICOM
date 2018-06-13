@@ -110,6 +110,10 @@ namespace icom
                 {
                     pictureBox.Image = global::icom.Properties.Resources.위험;
                 }
+                else if(70 > ref_value && ref_value > 20)
+                {
+                    pictureBox.Image = Properties.Resources.적정;
+                }
                 else
                 {
                     pictureBox.Image = Properties.Resources.안정;
