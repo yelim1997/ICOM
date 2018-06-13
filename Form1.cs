@@ -19,6 +19,7 @@ namespace icom
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
         int listindex = 0;
+        int listindex2 = 0;
 
         public static string CpuSet;
 
@@ -56,8 +57,8 @@ namespace icom
                 Console.WriteLine(ex.Message);
             }
 
-            //Form1_Load3, 프로그램
-            string computer = @"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
+            //Form1_Load3, 프로그램리스트 정보 가져오기
+            string computer = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
             using (RegistryKey app = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(computer))
             {
                 foreach (string appName in app.GetSubKeyNames())
@@ -72,7 +73,7 @@ namespace icom
                             var installDate = name.GetValue("InstallDate");
                             var memorySize = (int)name.GetValue("EstimatedSize");
 
-                            string[] row = { Convert.ToString(uninstall.ToString()), Convert.ToString(programName.ToString()), Convert.ToString(installDate.ToString()), Convert.ToString(memorySize) };
+                            string[] row = { Convert.ToString(programName.ToString()), Convert.ToString(installDate.ToString()), Convert.ToString(memorySize / 1000), Convert.ToString(uninstall.ToString()) };
                             var listViewItem = new ListViewItem(row);
                             listView2.Items.Add(listViewItem);
                             Process p = new Process();
@@ -83,8 +84,8 @@ namespace icom
                         { Console.WriteLine(ex.Message); }
                     }
                 }
-                label10.Text += " : ";
-                metroLabel4.Text = listView2.Items.Count.ToString();
+                programCount_head.Text += " : ";
+                programCount_num.Text = listView2.Items.Count.ToString();
             }
 
 
@@ -127,38 +128,9 @@ namespace icom
             }
         }
 
-        // 프로세스의 사용자 이름을 불러오도록 도와주는 함수
-        public string GetProcessUsername(int processId)
-        {
-            string query = "Select * From Win32_Process Where ProcessID = " + processId;
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
-            ManagementObjectCollection processList = searcher.Get();
-
-            foreach (ManagementObject mgo in processList)
-            {
-                string[] argList = new string[] { string.Empty, string.Empty };
-                int username = Convert.ToInt32(mgo.InvokeMethod("getowner", argList));
-                if (username == 0)
-                {
-                    return argList[1] + "\\" + argList[0];
-                }
-            }
-            return "System";
-        }
 
 
-        //프로세스의 정보를 불러와 listView1이 아이템으로 추가
-        private void WriteProcessInfo(Process processInfo)
-        {
-
-            string name1 = GetProcessUsername(processInfo.Id);
-            string[] row = { Convert.ToString(processInfo.ProcessName), Convert.ToString(processInfo.Id), Convert.ToString((processInfo.VirtualMemorySize64 / 1024) / 1024),Convert.ToString(name1)
- };
-            var listViewItem = new ListViewItem(row);
-            listView1.Items.Add(listViewItem);
-
-        }
-
+        /*--------------------------------------정렬 작업----------------------------------------------*/
         // listView1 컬럼 클릭시
         private void ListView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
@@ -231,6 +203,39 @@ namespace icom
             }
         }
 
+
+        /*--------------------------------------프로세스 작업----------------------------------------------*/
+        // 프로세스의 사용자 이름을 불러오도록 도와주는 함수
+        public string GetProcessUsername(int processId)
+        {
+            string query = "Select * From Win32_Process Where ProcessID = " + processId;
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
+            ManagementObjectCollection processList = searcher.Get();
+
+            foreach (ManagementObject mgo in processList)
+            {
+                string[] argList = new string[] { string.Empty, string.Empty };
+                int username = Convert.ToInt32(mgo.InvokeMethod("getowner", argList));
+                if (username == 0)
+                {
+                    return argList[1] + "\\" + argList[0];
+                }
+            }
+            return "System";
+        }
+
+
+        //프로세스의 정보를 불러와 listView1이 아이템으로 추가
+        private void WriteProcessInfo(Process processInfo)
+        {
+
+            string name1 = GetProcessUsername(processInfo.Id);
+            string[] row = { Convert.ToString(processInfo.ProcessName), Convert.ToString(processInfo.Id), Convert.ToString((processInfo.VirtualMemorySize64 / 1024) / 1024),Convert.ToString(name1)
+ };
+            var listViewItem = new ListViewItem(row);
+            listView1.Items.Add(listViewItem);
+
+        }
         // 프로세스 명 검색 시 SearchBox(TextBox) 엔터 이벤트
         private void Search_Enter(object sender, KeyEventArgs e)
         {
@@ -266,60 +271,60 @@ namespace icom
         }
 
         // 프로세스 종료 이벤트
-          private void Process_Stop_Button_Click(object sender, EventArgs e)
-          {
-              Form3 form3 = new Form3(this);
-              form3.StartPosition = FormStartPosition.Manual;
-              form3.Location = new Point(400, 350);
-              form3.ShowDialog();
-              user_name_value.Text = Form3.text;
-              if (user_name_value.Text == Environment.UserName)
-              {
-                  if (MessageBox.Show("정말 선택항목을 종료하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                  {
+        private void Process_Stop_Button_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3(this);
+            form3.StartPosition = FormStartPosition.Manual;
+            form3.Location = new Point(400, 350);
+            form3.ShowDialog();
+            user_name_value.Text = Form3.text;
+            if (user_name_value.Text == Environment.UserName)
+            {
+                if (MessageBox.Show("정말 선택항목을 종료하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
 
-                      // 프로세스 하나씩 삭제 구현
-                      if (listView1.SelectedItems.Count > 0)
-                      {
+                    // 프로세스 하나씩 삭제 구현
+                    if (listView1.SelectedItems.Count > 0)
+                    {
 
-                          listView1.Items[0].Focused = false;
-                          listView1.Items[0].Selected = false;
-
-
-
-                          string processname = listView1.SelectedItems[0].SubItems[0].Text;
-                          if (MessageBox.Show("'" + processname + "'" + " 을(를) 종료하시겠습니까?", "취소", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                          {
-                              Process[] proc = Process.GetProcessesByName(processname);
-
-                              foreach (Process p in proc)
-                              {
-                                  p.Kill();
-                              }
-                              foreach (ListViewItem listview1 in listView1.SelectedItems)
-                              {
-                                  listView1.Items.Remove(listview1);
-                              }
-
-                              Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
-
-                          }
+                        listView1.Items[0].Focused = false;
+                        listView1.Items[0].Selected = false;
 
 
-                      }
-                      else
-                      {
-                          MessageBox.Show("선택된 프로세스가 없습니다.");
-                      }
-                  }
-              }
-              else
-              {
-                  user_name_value.Text = "";
-                  MessageBox.Show(" 삭제하실 수 없습니다.");
-              }
 
-          }
+                        string processname = listView1.SelectedItems[0].SubItems[0].Text;
+                        if (MessageBox.Show("'" + processname + "'" + " 을(를) 종료하시겠습니까?", "취소", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            Process[] proc = Process.GetProcessesByName(processname);
+
+                            foreach (Process p in proc)
+                            {
+                                p.Kill();
+                            }
+                            foreach (ListViewItem listview1 in listView1.SelectedItems)
+                            {
+                                listView1.Items.Remove(listview1);
+                            }
+
+                            Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
+
+                        }
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("선택된 프로세스가 없습니다.");
+                    }
+                }
+            }
+            else
+            {
+                user_name_value.Text = "";
+                MessageBox.Show(" 삭제하실 수 없습니다.");
+            }
+
+        }
 
         // 검색 버튼 클릭 시 이벤트
         private void SearchButton_Click(object sender, EventArgs e)
@@ -366,54 +371,6 @@ namespace icom
 
         }
 
-        private void MetroButton2_Click(object sender, EventArgs e)//프로그램 삭제
-        {
-            int num = 0;
-            if (MessageBox.Show("정말 선택항목을 삭제하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-
-                if (listView2.SelectedItems.Count > 0)
-                {
-                    listView2.Items[0].Focused = false;
-                    listView2.Items[0].Selected = false;
-                }
-                if (listView2.Items.Count > 0)
-                {
-                    string[] product = new string[listView2.Items.Count];
-                    for (int i = listView2.Items.Count - 1; i >= 0; i--)
-                    {
-
-                        if (listView2.Items[i].Checked == true)
-                        {
-
-                            String code = listView2.Items[i].ToString();
-
-                            product[num] = code.Substring(30, 36);
-
-                            num++;
-                            listView2.Items[i].Remove();
-
-
-                            // 프로그램 수 변경 구현
-
-                        }
-
-                    }
-                    for (int j = 0; j < num; j++)
-                    {
-
-
-                        Process p = new Process();
-                        p.StartInfo.FileName = "msiexec.exe";
-                        p.StartInfo.Arguments = "/X\"{" + product[j] + "}\"/qn";
-                        p.Start();
-                        //MessageBox.Show(product[j]);
-                    }
-                    metroLabel4.Text = listView2.Items.Count.ToString();
-                }
-
-            }
-        }
 
         // 사용자 이름이 System일 경우 목록에서 제외시켜 주는 버튼
         private void System_Hiding_Click(object sender, EventArgs e)
@@ -461,7 +418,127 @@ namespace icom
 
         }
 
+        /*--------------------------------------프로그램 작업----------------------------------------------*/
+        private void MetroButton2_Click(object sender, EventArgs e)//프로그램 삭제
+        {
+            int num = 0;//코드가져오기 성공한 프로그램
+            int num2 = 0;//실패한 프로그램
+            if (MessageBox.Show("정말 선택항목을 삭제하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+                if (listView2.SelectedItems.Count > 0)
+                {
+                    listView2.Items[0].Focused = false;
+                    listView2.Items[0].Selected = false;
+                }
+                if (listView2.Items.Count > 0)
+                {
+                    string[] product = new string[listView2.Items.Count];
+                    for (int i = listView2.Items.Count - 1; i >= 0; i--)
+                    {
+
+                        if (listView2.Items[i].Checked == true)
+                        {
+
+                            String code = listView2.Items[i].SubItems[3].ToString();
+                            if (code.Substring(18, 7) == "MsiExec")
+                            {
+
+                                product[num] = code.Substring(30, 36);
+                                num++;
+                                listView2.Items[i].Remove();
+                            }
+                            else
+                                num2++;
+
+
+                        }
+
+                    }
+                    for (int j = 0; j < num; j++)
+                    {
+
+
+                        Process p = new Process();
+                        p.StartInfo.FileName = "msiexec.exe";
+                        p.StartInfo.Arguments = "/X\"{" + product[j] + "}\"/qn";
+                        p.Start();
+                    }
+
+                    if (num2 > 0) MessageBox.Show("프로그램 " + num2 + "개를 삭제 실패했습니다. UnistallString을 확인해 주세요.");
+                    programCount_num.Text = listView2.Items.Count.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("선택된 프로그램이 없습니다.");
+                }
+
+            }
+        }
+        // listView2의 아이템 찾아주는 함수
+        private ListViewItem Finditem2(string searchtext, int startindex)
+        {
+            for (int i = startindex; i < listView2.Items.Count; i++)
+            {
+                ListViewItem SearchText = listView2.Items[i];
+                bool isContains = SearchText.SubItems[0].Text.Contains(searchtext);
+                if (isContains)
+                {
+                    return SearchText;
+                }
+
+            }
+            return null;
+        }
+
+        private void Selectitem2(ListViewItem SearchText)
+        {
+            listindex2 = SearchText.Index;
+            listView2.MultiSelect = false;
+            SearchText.Selected = true;
+            listView2.Select();
+            listView2.MultiSelect = true;
+        }
+
+        private void program_searchButton_Click(object sender, EventArgs e)//프로그램 검색
+        {
+            ListViewItem SearchText = Finditem2(Program_SearchBox.Text, 0);
+
+            if (SearchText == null)
+                MessageBox.Show("일치하는 데이터가 없습니다.");
+            else
+                Selectitem2(SearchText);
+            listView2.EnsureVisible(listindex2);
+        }
+
+        private void program_nextbutton_Click(object sender, EventArgs e)//다음 버튼 클릭
+        {
+            ListViewItem SearchText = Finditem2(Program_SearchBox.Text, ++listindex2);
+            if ((SearchText != null) && (listindex2 > 0))
+            {
+                Selectitem2(SearchText);
+                listView2.EnsureVisible(listindex2);
+            }
+            else
+            {
+                MessageBox.Show("마지막 프로그램 입니다.");
+                listindex2 = -1;
+                if (listindex2 == -1)
+                {
+                    listindex2 = 0;
+                }
+            }
+            if (listindex2 == (listView2.Items.Count - 1))
+                listindex2 = -1;
+        }
+
+        private void Program_SearchBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
+
+    /*--------------------------------------정렬 클래스----------------------------------------------*/
     //sort
     public class ItemComparer : System.Collections.IComparer
     {
