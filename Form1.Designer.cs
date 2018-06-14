@@ -31,10 +31,10 @@ namespace icom
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.CpuBar = new MetroFramework.Controls.MetroProgressBar();
             this.MemBar = new MetroFramework.Controls.MetroProgressBar();
@@ -51,6 +51,8 @@ namespace icom
             this.Plabel = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.programHide = new MetroFramework.Controls.MetroButton();
+            this.programRevert = new MetroFramework.Controls.MetroButton();
             this.program_nextbutton = new MetroFramework.Controls.MetroButton();
             this.program_searchButton = new MetroFramework.Controls.MetroButton();
             this.Program_SearchBox = new System.Windows.Forms.TextBox();
@@ -63,6 +65,7 @@ namespace icom
             this.installDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.unisatllString = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.programPublisher = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.user_name_value = new MetroFramework.Controls.MetroLabel();
             this.System_User = new System.Windows.Forms.Label();
@@ -114,27 +117,30 @@ namespace icom
             //
             this.CpuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CpuBar.Location = new System.Drawing.Point(90, 47);
+            this.CpuBar.Location = new System.Drawing.Point(112, 56);
+            this.CpuBar.Margin = new System.Windows.Forms.Padding(4);
             this.CpuBar.Name = "CpuBar";
-            this.CpuBar.Size = new System.Drawing.Size(1036, 36);
+            this.CpuBar.Size = new System.Drawing.Size(1295, 43);
             this.CpuBar.TabIndex = 0;
             //
             // MemBar
             //
             this.MemBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.MemBar.Location = new System.Drawing.Point(90, 105);
+            this.MemBar.Location = new System.Drawing.Point(112, 126);
+            this.MemBar.Margin = new System.Windows.Forms.Padding(4);
             this.MemBar.Name = "MemBar";
-            this.MemBar.Size = new System.Drawing.Size(1036, 36);
+            this.MemBar.Size = new System.Drawing.Size(1295, 43);
             this.MemBar.TabIndex = 1;
             //
             // CpuValue
             //
             this.CpuValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CpuValue.AutoSize = true;
-            this.CpuValue.Location = new System.Drawing.Point(1144, 58);
+            this.CpuValue.Location = new System.Drawing.Point(1430, 70);
+            this.CpuValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CpuValue.Name = "CpuValue";
-            this.CpuValue.Size = new System.Drawing.Size(84, 20);
+            this.CpuValue.Size = new System.Drawing.Size(81, 19);
             this.CpuValue.TabIndex = 2;
             this.CpuValue.Text = "metroLabel1";
             //
@@ -142,9 +148,10 @@ namespace icom
             //
             this.MemValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MemValue.AutoSize = true;
-            this.MemValue.Location = new System.Drawing.Point(1141, 121);
+            this.MemValue.Location = new System.Drawing.Point(1426, 145);
+            this.MemValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MemValue.Name = "MemValue";
-            this.MemValue.Size = new System.Drawing.Size(87, 20);
+            this.MemValue.Size = new System.Drawing.Size(83, 19);
             this.MemValue.TabIndex = 3;
             this.MemValue.Text = "metroLabel2";
             //
@@ -153,24 +160,24 @@ namespace icom
             this.CpuMemChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.CpuMemChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.CpuMemChart.Legends.Add(legend1);
-            this.CpuMemChart.Location = new System.Drawing.Point(39, 160);
-            this.CpuMemChart.Margin = new System.Windows.Forms.Padding(4);
+            chartArea3.Name = "ChartArea1";
+            this.CpuMemChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.CpuMemChart.Legends.Add(legend3);
+            this.CpuMemChart.Location = new System.Drawing.Point(49, 192);
+            this.CpuMemChart.Margin = new System.Windows.Forms.Padding(5);
             this.CpuMemChart.Name = "CpuMemChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "CPU";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "RAM";
-            this.CpuMemChart.Series.Add(series1);
-            this.CpuMemChart.Series.Add(series2);
-            this.CpuMemChart.Size = new System.Drawing.Size(959, 367);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Legend = "Legend1";
+            series5.Name = "CPU";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Legend = "Legend1";
+            series6.Name = "RAM";
+            this.CpuMemChart.Series.Add(series5);
+            this.CpuMemChart.Series.Add(series6);
+            this.CpuMemChart.Size = new System.Drawing.Size(1199, 440);
             this.CpuMemChart.TabIndex = 5;
             this.CpuMemChart.Text = "chart1";
             //
@@ -191,9 +198,10 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cpu.AutoSize = true;
-            this.cpu.Location = new System.Drawing.Point(18, 58);
+            this.cpu.Location = new System.Drawing.Point(22, 70);
+            this.cpu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cpu.Name = "cpu";
-            this.cpu.Size = new System.Drawing.Size(47, 15);
+            this.cpu.Size = new System.Drawing.Size(54, 18);
             this.cpu.TabIndex = 6;
             this.cpu.Text = "CPU :";
             //
@@ -203,9 +211,10 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ram.AutoSize = true;
-            this.ram.Location = new System.Drawing.Point(18, 117);
+            this.ram.Location = new System.Drawing.Point(22, 140);
+            this.ram.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ram.Name = "ram";
-            this.ram.Size = new System.Drawing.Size(48, 15);
+            this.ram.Size = new System.Drawing.Size(58, 18);
             this.ram.TabIndex = 7;
             this.ram.Text = "RAM :";
             //
@@ -219,10 +228,11 @@ namespace icom
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Location = new System.Drawing.Point(13, 87);
+            this.tabControl1.Location = new System.Drawing.Point(16, 104);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1324, 563);
+            this.tabControl1.Size = new System.Drawing.Size(1655, 676);
             this.tabControl1.TabIndex = 8;
             //
             // tabPage1
@@ -237,10 +247,11 @@ namespace icom
             this.tabPage1.Controls.Add(this.ram);
             this.tabPage1.Controls.Add(this.MemBar);
             this.tabPage1.Controls.Add(this.cpu);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1316, 534);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Size = new System.Drawing.Size(1647, 644);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "CPU & RAM Manager";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -248,9 +259,10 @@ namespace icom
             // NumSet
             //
             this.NumSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.NumSet.Location = new System.Drawing.Point(1188, 269);
+            this.NumSet.Location = new System.Drawing.Point(1485, 323);
+            this.NumSet.Margin = new System.Windows.Forms.Padding(4);
             this.NumSet.Name = "NumSet";
-            this.NumSet.Size = new System.Drawing.Size(100, 40);
+            this.NumSet.Size = new System.Drawing.Size(125, 48);
             this.NumSet.TabIndex = 10;
             this.NumSet.Text = "기준치 설정";
             this.NumSet.UseVisualStyleBackColor = true;
@@ -261,9 +273,10 @@ namespace icom
             this.Plabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Plabel.AutoSize = true;
             this.Plabel.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Plabel.Location = new System.Drawing.Point(1028, 278);
+            this.Plabel.Location = new System.Drawing.Point(1285, 334);
+            this.Plabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Plabel.Name = "Plabel";
-            this.Plabel.Size = new System.Drawing.Size(135, 20);
+            this.Plabel.Size = new System.Drawing.Size(160, 24);
             this.Plabel.TabIndex = 9;
             this.Plabel.Text = "현재 cpu 상태";
             //
@@ -271,14 +284,17 @@ namespace icom
             //
             this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox.Image = global::icom.Properties.Resources.안정;
-            this.pictureBox.Location = new System.Drawing.Point(1018, 334);
+            this.pictureBox.Location = new System.Drawing.Point(1272, 401);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(270, 170);
+            this.pictureBox.Size = new System.Drawing.Size(338, 204);
             this.pictureBox.TabIndex = 8;
             this.pictureBox.TabStop = false;
             //
             // tabPage2
             //
+            this.tabPage2.Controls.Add(this.programHide);
+            this.tabPage2.Controls.Add(this.programRevert);
             this.tabPage2.Controls.Add(this.program_nextbutton);
             this.tabPage2.Controls.Add(this.program_searchButton);
             this.tabPage2.Controls.Add(this.Program_SearchBox);
@@ -287,48 +303,73 @@ namespace icom
             this.tabPage2.Controls.Add(this.uninstallButton);
             this.tabPage2.Controls.Add(this.programCount_head);
             this.tabPage2.Controls.Add(this.listView2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1316, 534);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Size = new System.Drawing.Size(1647, 644);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Program Manager";
             this.tabPage2.UseVisualStyleBackColor = true;
             //
+            // programHide
+            //
+            this.programHide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.programHide.Location = new System.Drawing.Point(1191, 401);
+            this.programHide.Margin = new System.Windows.Forms.Padding(2);
+            this.programHide.Name = "programHide";
+            this.programHide.Size = new System.Drawing.Size(112, 48);
+            this.programHide.TabIndex = 10;
+            this.programHide.Text = "중요 프로그램 숨기기";
+            this.programHide.Click += new System.EventHandler(this.programHide_Click);
+            //
+            // programRevert
+            //
+            this.programRevert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.programRevert.Location = new System.Drawing.Point(1191, 481);
+            this.programRevert.Margin = new System.Windows.Forms.Padding(2);
+            this.programRevert.Name = "programRevert";
+            this.programRevert.Size = new System.Drawing.Size(112, 48);
+            this.programRevert.TabIndex = 9;
+            this.programRevert.Text = "전체 목록 보기";
+            this.programRevert.Click += new System.EventHandler(this.programRevert_Click);
+            //
             // program_nextbutton
             //
-            this.program_nextbutton.Location = new System.Drawing.Point(617, 29);
+            this.program_nextbutton.Location = new System.Drawing.Point(771, 35);
+            this.program_nextbutton.Margin = new System.Windows.Forms.Padding(4);
             this.program_nextbutton.Name = "program_nextbutton";
-            this.program_nextbutton.Size = new System.Drawing.Size(75, 23);
+            this.program_nextbutton.Size = new System.Drawing.Size(94, 28);
             this.program_nextbutton.TabIndex = 8;
             this.program_nextbutton.Text = "다음";
             this.program_nextbutton.Click += new System.EventHandler(this.program_nextbutton_Click);
             //
             // program_searchButton
             //
-            this.program_searchButton.Location = new System.Drawing.Point(518, 29);
+            this.program_searchButton.Location = new System.Drawing.Point(648, 35);
+            this.program_searchButton.Margin = new System.Windows.Forms.Padding(4);
             this.program_searchButton.Name = "program_searchButton";
-            this.program_searchButton.Size = new System.Drawing.Size(75, 23);
+            this.program_searchButton.Size = new System.Drawing.Size(94, 28);
             this.program_searchButton.TabIndex = 7;
             this.program_searchButton.Text = "검색";
             this.program_searchButton.Click += new System.EventHandler(this.program_searchButton_Click);
             //
             // Program_SearchBox
             //
-            this.Program_SearchBox.Location = new System.Drawing.Point(130, 29);
+            this.Program_SearchBox.Location = new System.Drawing.Point(162, 35);
             this.Program_SearchBox.Margin = new System.Windows.Forms.Padding(2);
             this.Program_SearchBox.Name = "Program_SearchBox";
-            this.Program_SearchBox.Size = new System.Drawing.Size(359, 25);
+            this.Program_SearchBox.Size = new System.Drawing.Size(448, 28);
             this.Program_SearchBox.TabIndex = 5;
-            this.Program_SearchBox.TextChanged += new System.EventHandler(this.Program_SearchBox_TextChanged);
+            this.Program_SearchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_Enter2);
             //
             // ProgramSearch_head
             //
             this.ProgramSearch_head.AutoSize = true;
-            this.ProgramSearch_head.Location = new System.Drawing.Point(27, 29);
+            this.ProgramSearch_head.Location = new System.Drawing.Point(34, 35);
             this.ProgramSearch_head.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ProgramSearch_head.Name = "ProgramSearch_head";
-            this.ProgramSearch_head.Size = new System.Drawing.Size(102, 15);
+            this.ProgramSearch_head.Size = new System.Drawing.Size(122, 18);
             this.ProgramSearch_head.TabIndex = 4;
             this.ProgramSearch_head.Text = "프로그램 명 : ";
             //
@@ -338,19 +379,20 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.programCount_num.AutoSize = true;
-            this.programCount_num.Location = new System.Drawing.Point(130, 73);
+            this.programCount_num.Location = new System.Drawing.Point(162, 88);
+            this.programCount_num.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.programCount_num.Name = "programCount_num";
-            this.programCount_num.Size = new System.Drawing.Size(87, 20);
+            this.programCount_num.Size = new System.Drawing.Size(83, 19);
             this.programCount_num.TabIndex = 3;
             this.programCount_num.Text = "metroLabel4";
             //
             // uninstallButton
             //
             this.uninstallButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.uninstallButton.Location = new System.Drawing.Point(953, 468);
+            this.uninstallButton.Location = new System.Drawing.Point(1191, 562);
             this.uninstallButton.Margin = new System.Windows.Forms.Padding(2);
             this.uninstallButton.Name = "uninstallButton";
-            this.uninstallButton.Size = new System.Drawing.Size(90, 40);
+            this.uninstallButton.Size = new System.Drawing.Size(112, 48);
             this.uninstallButton.TabIndex = 2;
             this.uninstallButton.Text = "삭제";
             this.uninstallButton.Click += new System.EventHandler(this.MetroButton2_Click);
@@ -358,10 +400,10 @@ namespace icom
             // programCount_head
             //
             this.programCount_head.AutoSize = true;
-            this.programCount_head.Location = new System.Drawing.Point(27, 78);
+            this.programCount_head.Location = new System.Drawing.Point(34, 94);
             this.programCount_head.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.programCount_head.Name = "programCount_head";
-            this.programCount_head.Size = new System.Drawing.Size(102, 15);
+            this.programCount_head.Size = new System.Drawing.Size(122, 18);
             this.programCount_head.TabIndex = 1;
             this.programCount_head.Text = "프로그램 수 : ";
             //
@@ -375,11 +417,12 @@ namespace icom
             this.programName,
             this.installDate,
             this.memory,
-            this.unisatllString});
-            this.listView2.Location = new System.Drawing.Point(30, 115);
+            this.unisatllString,
+            this.programPublisher});
+            this.listView2.Location = new System.Drawing.Point(38, 138);
             this.listView2.Margin = new System.Windows.Forms.Padding(2);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(885, 436);
+            this.listView2.Size = new System.Drawing.Size(1105, 522);
             this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -407,6 +450,11 @@ namespace icom
             this.unisatllString.Text = "Program_UnistallString";
             this.unisatllString.Width = 0;
             //
+            // programPublisher
+            //
+            this.programPublisher.Text = "Program_Publisher";
+            this.programPublisher.Width = 200;
+            //
             // tabPage3
             //
             this.tabPage3.Controls.Add(this.user_name_value);
@@ -421,10 +469,11 @@ namespace icom
             this.tabPage3.Controls.Add(this.listView1);
             this.tabPage3.Controls.Add(this.Process_Num_Value);
             this.tabPage3.Controls.Add(this.lProcess_Num);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1316, 534);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage3.Size = new System.Drawing.Size(1647, 644);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Background & Foreground Manager";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -432,27 +481,30 @@ namespace icom
             // user_name_value
             //
             this.user_name_value.AutoSize = true;
-            this.user_name_value.Location = new System.Drawing.Point(1101, 293);
+            this.user_name_value.Location = new System.Drawing.Point(1376, 352);
+            this.user_name_value.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.user_name_value.Name = "user_name_value";
-            this.user_name_value.Size = new System.Drawing.Size(116, 20);
+            this.user_name_value.Size = new System.Drawing.Size(108, 19);
             this.user_name_value.TabIndex = 12;
             this.user_name_value.Text = "user_name_value";
             //
             // System_User
             //
             this.System_User.AutoSize = true;
-            this.System_User.Location = new System.Drawing.Point(1098, 264);
+            this.System_User.Location = new System.Drawing.Point(1372, 317);
+            this.System_User.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.System_User.Name = "System_User";
-            this.System_User.Size = new System.Drawing.Size(112, 15);
+            this.System_User.Size = new System.Drawing.Size(134, 18);
             this.System_User.TabIndex = 10;
             this.System_User.Text = "시스템 사용자 :";
             //
             // Process_Revert
             //
             this.Process_Revert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Process_Revert.Location = new System.Drawing.Point(1117, 345);
+            this.Process_Revert.Location = new System.Drawing.Point(1396, 414);
+            this.Process_Revert.Margin = new System.Windows.Forms.Padding(4);
             this.Process_Revert.Name = "Process_Revert";
-            this.Process_Revert.Size = new System.Drawing.Size(125, 40);
+            this.Process_Revert.Size = new System.Drawing.Size(156, 48);
             this.Process_Revert.TabIndex = 9;
             this.Process_Revert.Text = "모든 프로세스";
             this.Process_Revert.Click += new System.EventHandler(this.Process_Revert_Click);
@@ -460,36 +512,40 @@ namespace icom
             // System_Hiding
             //
             this.System_Hiding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.System_Hiding.Location = new System.Drawing.Point(1117, 406);
+            this.System_Hiding.Location = new System.Drawing.Point(1396, 487);
+            this.System_Hiding.Margin = new System.Windows.Forms.Padding(4);
             this.System_Hiding.Name = "System_Hiding";
-            this.System_Hiding.Size = new System.Drawing.Size(125, 40);
+            this.System_Hiding.Size = new System.Drawing.Size(156, 48);
             this.System_Hiding.TabIndex = 8;
             this.System_Hiding.Text = "System 숨기기";
             this.System_Hiding.Click += new System.EventHandler(this.System_Hiding_Click);
             //
             // NextButton_Search
             //
-            this.NextButton_Search.Location = new System.Drawing.Point(617, 29);
+            this.NextButton_Search.Location = new System.Drawing.Point(771, 35);
+            this.NextButton_Search.Margin = new System.Windows.Forms.Padding(4);
             this.NextButton_Search.Name = "NextButton_Search";
-            this.NextButton_Search.Size = new System.Drawing.Size(75, 23);
+            this.NextButton_Search.Size = new System.Drawing.Size(94, 28);
             this.NextButton_Search.TabIndex = 7;
             this.NextButton_Search.Text = "다음";
             this.NextButton_Search.Click += new System.EventHandler(this.NextButton_Search_Click);
             //
             // SearchButton
             //
-            this.SearchButton.Location = new System.Drawing.Point(518, 29);
+            this.SearchButton.Location = new System.Drawing.Point(648, 35);
+            this.SearchButton.Margin = new System.Windows.Forms.Padding(4);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(75, 23);
+            this.SearchButton.Size = new System.Drawing.Size(94, 28);
             this.SearchButton.TabIndex = 6;
             this.SearchButton.Text = "검색";
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             //
             // SearchBox
             //
-            this.SearchBox.Location = new System.Drawing.Point(130, 29);
+            this.SearchBox.Location = new System.Drawing.Point(162, 35);
+            this.SearchBox.Margin = new System.Windows.Forms.Padding(4);
             this.SearchBox.Name = "SearchBox";
-            this.SearchBox.Size = new System.Drawing.Size(359, 25);
+            this.SearchBox.Size = new System.Drawing.Size(448, 28);
             this.SearchBox.TabIndex = 5;
             this.SearchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_Enter);
             //
@@ -499,18 +555,20 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lProcess_Name.AutoSize = true;
-            this.lProcess_Name.Location = new System.Drawing.Point(27, 29);
+            this.lProcess_Name.Location = new System.Drawing.Point(34, 35);
+            this.lProcess_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lProcess_Name.Name = "lProcess_Name";
-            this.lProcess_Name.Size = new System.Drawing.Size(97, 15);
+            this.lProcess_Name.Size = new System.Drawing.Size(116, 18);
             this.lProcess_Name.TabIndex = 4;
             this.lProcess_Name.Text = "프로세스 명 :";
             //
             // Process_End_Button
             //
             this.Process_End_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Process_End_Button.Location = new System.Drawing.Point(1117, 469);
+            this.Process_End_Button.Location = new System.Drawing.Point(1396, 563);
+            this.Process_End_Button.Margin = new System.Windows.Forms.Padding(4);
             this.Process_End_Button.Name = "Process_End_Button";
-            this.Process_End_Button.Size = new System.Drawing.Size(90, 40);
+            this.Process_End_Button.Size = new System.Drawing.Size(112, 48);
             this.Process_End_Button.TabIndex = 3;
             this.Process_End_Button.Text = "프로세스 중지";
             this.Process_End_Button.Click += new System.EventHandler(this.Process_Stop_Button_Click);
@@ -526,9 +584,10 @@ namespace icom
             this.Process_Memory,
             this.Process_Username});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(30, 115);
+            this.listView1.Location = new System.Drawing.Point(38, 138);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1036, 394);
+            this.listView1.Size = new System.Drawing.Size(1294, 472);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -564,9 +623,10 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Process_Num_Value.AutoSize = true;
-            this.Process_Num_Value.Location = new System.Drawing.Point(130, 73);
+            this.Process_Num_Value.Location = new System.Drawing.Point(162, 88);
+            this.Process_Num_Value.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Process_Num_Value.Name = "Process_Num_Value";
-            this.Process_Num_Value.Size = new System.Drawing.Size(87, 20);
+            this.Process_Num_Value.Size = new System.Drawing.Size(83, 19);
             this.Process_Num_Value.TabIndex = 1;
             this.Process_Num_Value.Text = "metroLabel3";
             //
@@ -576,9 +636,10 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lProcess_Num.AutoSize = true;
-            this.lProcess_Num.Location = new System.Drawing.Point(27, 78);
+            this.lProcess_Num.Location = new System.Drawing.Point(34, 94);
+            this.lProcess_Num.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lProcess_Num.Name = "lProcess_Num";
-            this.lProcess_Num.Size = new System.Drawing.Size(97, 15);
+            this.lProcess_Num.Size = new System.Drawing.Size(116, 18);
             this.lProcess_Num.TabIndex = 0;
             this.lProcess_Num.Text = "프로세스 수 :";
             //
@@ -590,10 +651,11 @@ namespace icom
             this.tabPage4.Controls.Add(this.BootMode);
             this.tabPage4.Controls.Add(this.UserName);
             this.tabPage4.Controls.Add(this.PcName);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Location = new System.Drawing.Point(4, 28);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1316, 534);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage4.Size = new System.Drawing.Size(1647, 644);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "System Information";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -605,9 +667,10 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MouseSpeed.AutoSize = true;
             this.MouseSpeed.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.MouseSpeed.Location = new System.Drawing.Point(111, 371);
+            this.MouseSpeed.Location = new System.Drawing.Point(139, 445);
+            this.MouseSpeed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MouseSpeed.Name = "MouseSpeed";
-            this.MouseSpeed.Size = new System.Drawing.Size(57, 20);
+            this.MouseSpeed.Size = new System.Drawing.Size(69, 24);
             this.MouseSpeed.TabIndex = 5;
             this.MouseSpeed.Text = "label8";
             //
@@ -618,9 +681,10 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NetworkCon.AutoSize = true;
             this.NetworkCon.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.NetworkCon.Location = new System.Drawing.Point(111, 306);
+            this.NetworkCon.Location = new System.Drawing.Point(139, 367);
+            this.NetworkCon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NetworkCon.Name = "NetworkCon";
-            this.NetworkCon.Size = new System.Drawing.Size(57, 20);
+            this.NetworkCon.Size = new System.Drawing.Size(69, 24);
             this.NetworkCon.TabIndex = 4;
             this.NetworkCon.Text = "label7";
             //
@@ -631,9 +695,10 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UserDomain.AutoSize = true;
             this.UserDomain.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.UserDomain.Location = new System.Drawing.Point(111, 245);
+            this.UserDomain.Location = new System.Drawing.Point(139, 294);
+            this.UserDomain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.UserDomain.Name = "UserDomain";
-            this.UserDomain.Size = new System.Drawing.Size(57, 20);
+            this.UserDomain.Size = new System.Drawing.Size(69, 24);
             this.UserDomain.TabIndex = 3;
             this.UserDomain.Text = "label6";
             //
@@ -644,9 +709,10 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BootMode.AutoSize = true;
             this.BootMode.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BootMode.Location = new System.Drawing.Point(111, 183);
+            this.BootMode.Location = new System.Drawing.Point(139, 220);
+            this.BootMode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BootMode.Name = "BootMode";
-            this.BootMode.Size = new System.Drawing.Size(57, 20);
+            this.BootMode.Size = new System.Drawing.Size(69, 24);
             this.BootMode.TabIndex = 2;
             this.BootMode.Text = "label5";
             //
@@ -657,9 +723,10 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UserName.AutoSize = true;
             this.UserName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.UserName.Location = new System.Drawing.Point(111, 120);
+            this.UserName.Location = new System.Drawing.Point(139, 144);
+            this.UserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.UserName.Name = "UserName";
-            this.UserName.Size = new System.Drawing.Size(57, 20);
+            this.UserName.Size = new System.Drawing.Size(69, 24);
             this.UserName.TabIndex = 1;
             this.UserName.Text = "label4";
             //
@@ -670,9 +737,10 @@ namespace icom
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PcName.AutoSize = true;
             this.PcName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.PcName.Location = new System.Drawing.Point(111, 63);
+            this.PcName.Location = new System.Drawing.Point(139, 76);
+            this.PcName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PcName.Name = "PcName";
-            this.PcName.Size = new System.Drawing.Size(57, 20);
+            this.PcName.Size = new System.Drawing.Size(69, 24);
             this.PcName.TabIndex = 0;
             this.PcName.Text = "label3";
             //
@@ -684,10 +752,11 @@ namespace icom
             this.tabPage5.Controls.Add(this.GitHub);
             this.tabPage5.Controls.Add(this.CreaterInfo);
             this.tabPage5.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Location = new System.Drawing.Point(4, 28);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1316, 534);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage5.Size = new System.Drawing.Size(1647, 644);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "About";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -695,19 +764,21 @@ namespace icom
             // ProgramInfo2
             //
             this.ProgramInfo2.AutoSize = true;
-            this.ProgramInfo2.Location = new System.Drawing.Point(255, 229);
+            this.ProgramInfo2.Location = new System.Drawing.Point(319, 275);
+            this.ProgramInfo2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ProgramInfo2.Name = "ProgramInfo2";
-            this.ProgramInfo2.Size = new System.Drawing.Size(954, 40);
+            this.ProgramInfo2.Size = new System.Drawing.Size(1138, 72);
             this.ProgramInfo2.TabIndex = 4;
-            this.ProgramInfo2.Text = "본 프로그램은 쾌적한 컴퓨터의 이용을 위해 제작된 프로그램입니다.\n\n 이 프로그램은 cpu, memory 관리, 프로그램 삭제, 백그라운드 및 포어" +
-    "그라운드 삭제 기능을 제공합니다. ";
+            this.ProgramInfo2.Text = "본 프로그램은 쾌적한 컴퓨터의 이용을 위해 제작된 프로그램입니다.\n\n 이 프로그램은 cpu, memory 관리, 프로그램 삭제, 백그라운드 및 포" +
+    "어그라운드 삭제 기능을 제공합니다. ";
             //
             // linkLabel1
             //
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(183, 166);
+            this.linkLabel1.Location = new System.Drawing.Point(229, 199);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(320, 20);
+            this.linkLabel1.Size = new System.Drawing.Size(369, 24);
             this.linkLabel1.TabIndex = 3;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "https://github.com/yelim1997/ICOM";
@@ -716,9 +787,10 @@ namespace icom
             //
             this.ProgrameInfo.AutoSize = true;
             this.ProgrameInfo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ProgrameInfo.Location = new System.Drawing.Point(92, 229);
+            this.ProgrameInfo.Location = new System.Drawing.Point(115, 275);
+            this.ProgrameInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ProgrameInfo.Name = "ProgrameInfo";
-            this.ProgrameInfo.Size = new System.Drawing.Size(157, 20);
+            this.ProgrameInfo.Size = new System.Drawing.Size(186, 24);
             this.ProgrameInfo.TabIndex = 2;
             this.ProgrameInfo.Text = "프로그램 소개 : ";
             //
@@ -726,9 +798,10 @@ namespace icom
             //
             this.GitHub.AutoSize = true;
             this.GitHub.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.GitHub.Location = new System.Drawing.Point(92, 166);
+            this.GitHub.Location = new System.Drawing.Point(115, 199);
+            this.GitHub.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.GitHub.Name = "GitHub";
-            this.GitHub.Size = new System.Drawing.Size(85, 20);
+            this.GitHub.Size = new System.Drawing.Size(102, 24);
             this.GitHub.TabIndex = 1;
             this.GitHub.Text = "GitHub : ";
             //
@@ -736,19 +809,22 @@ namespace icom
             //
             this.CreaterInfo.AutoSize = true;
             this.CreaterInfo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.CreaterInfo.Location = new System.Drawing.Point(92, 108);
+            this.CreaterInfo.Location = new System.Drawing.Point(115, 130);
+            this.CreaterInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CreaterInfo.Name = "CreaterInfo";
-            this.CreaterInfo.Size = new System.Drawing.Size(438, 20);
+            this.CreaterInfo.Size = new System.Drawing.Size(522, 24);
             this.CreaterInfo.TabIndex = 0;
             this.CreaterInfo.Text = "제작자 정보 : 버뮤다 ( 권예림, 최유진, 이정순 )";
             //
             // Form1
             //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1360, 673);
+            this.ClientSize = new System.Drawing.Size(1700, 808);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
+            this.Padding = new System.Windows.Forms.Padding(25, 72, 25, 24);
             this.Text = "ICOM | Bermuda";
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Right;
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -836,5 +912,8 @@ namespace icom
         private System.Windows.Forms.Label ProgramSearch_head;
         private System.Windows.Forms.ColumnHeader unisatllString;
         private System.Windows.Forms.Label ProgramInfo2;
+        private MetroFramework.Controls.MetroButton programHide;
+        private MetroFramework.Controls.MetroButton programRevert;
+        private System.Windows.Forms.ColumnHeader programPublisher;
     }
 }

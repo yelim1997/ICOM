@@ -72,8 +72,9 @@ namespace icom
                             var programName = name.GetValue("DisplayName");
                             var installDate = name.GetValue("InstallDate");
                             var memorySize = (int)name.GetValue("EstimatedSize");
+                            var publisher = name.GetValue("Publisher");
 
-                            string[] row = { Convert.ToString(programName.ToString()), Convert.ToString(installDate.ToString()), Convert.ToString(memorySize / 1000), Convert.ToString(uninstall.ToString()) };
+                            string[] row = { Convert.ToString(programName.ToString()), Convert.ToString(installDate.ToString()), Convert.ToString(memorySize / 1000), Convert.ToString(uninstall.ToString()), Convert.ToString(publisher.ToString())};
                             var listViewItem = new ListViewItem(row);
                             listView2.Items.Add(listViewItem);
                             Process p = new Process();
@@ -110,10 +111,12 @@ namespace icom
                 {
                     pictureBox.Image = global::icom.Properties.Resources.위험;
                 }
-                else if(70 > ref_value && ref_value > 20)
+                /*
+                else if (70 > ref_value && ref_value > 20)
                 {
                     pictureBox.Image = Properties.Resources.적정;
                 }
+                */
                 else
                 {
                     pictureBox.Image = Properties.Resources.안정;
@@ -185,25 +188,25 @@ namespace icom
                 listView2.Columns[i].Text = listView2.Columns[i].Text.Replace(" ▲", "");
             }
             if (e.Column == 0)
-            { // Uninstallkey
+            { // Program Name
 
                 ItemSort.sort(listView2, e, false);
 
             }
             else if (e.Column == 1)
-            { // Program Name
-
-                ItemSort.sort(listView2, e, false);
-            }
-            else if (e.Column == 2)
-            { // Install DateSize
+            {  // Install Date
 
                 ItemSort.sort(listView2, e, true);
             }
-            else if (e.Column == 3)
+            else if (e.Column == 2)
             { // Size
 
                 ItemSort.sort(listView2, e, true);
+            }
+            else
+            {
+
+                ItemSort.sort(listView2, e, false);
             }
         }
 
@@ -427,6 +430,7 @@ namespace icom
         {
             int num = 0;//코드가져오기 성공한 프로그램
             int num2 = 0;//실패한 프로그램
+            int num3 = 0;//삭제하면 안되는 프로그램
             if (MessageBox.Show("정말 선택항목을 삭제하시겠습니까?", "항목 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
 
@@ -445,20 +449,47 @@ namespace icom
                         {
 
                             String code = listView2.Items[i].SubItems[3].ToString();
-                            if (code.Substring(18, 7) == "MsiExec")
+
+                            if (listView2.Items[i].SubItems[4].Text.Contains("Microsoft"))
+                            {
+                                num3++;
+                            }
+                            else if (listView2.Items[i].SubItems[4].Text.Contains("Initech"))
+                            {
+                                num3++;
+                            }
+                            else if (listView2.Items[i].SubItems[4].Text.Contains("IVI"))
+                            {
+                                num3++;
+                            }
+                            else if (listView2.Items[i].SubItems[4].Text.Contains("RaonSecure"))
+                            {
+                                num3++;
+                            }
+                            else if (listView2.Items[i].SubItems[4].Text.Contains("VISA"))
+                            {
+                                num3++;
+                            }
+                            else if (listView2.Items[i].SubItems[4].Text.Contains("Windows"))
+                            {
+                                num3++;
+                            }
+
+                            else if (code.Contains("MsiExec"))
                             {
 
-                                product[num] = code.Substring(30, 36);
+                                product[num] = code.Substring(33, 36);
                                 num++;
+                                MessageBox.Show(listView2.Items[i].SubItems[0].ToString());
                                 listView2.Items[i].Remove();
                             }
                             else
                                 num2++;
 
-
                         }
 
                     }
+
                     for (int j = 0; j < num; j++)
                     {
 
@@ -469,8 +500,12 @@ namespace icom
                         p.Start();
                     }
 
+
                     if (num2 > 0) MessageBox.Show("프로그램 " + num2 + "개를 삭제 실패했습니다. UnistallString을 확인해 주세요.");
+                    if (num3 > 0) MessageBox.Show("삭제시 시스템에 지장을 줄지도 모르는 프로그램 " + num3 + "개를 삭제에서 제외하였습니다.");
                     programCount_num.Text = listView2.Items.Count.ToString();
+
+
                 }
                 else
                 {
@@ -515,13 +550,21 @@ namespace icom
             listView2.EnsureVisible(listindex2);
         }
 
+        private void Search_Enter2(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) //엔터 클릭시 Search Button 실행
+            {
+                this.program_searchButton_Click(sender, e);
+            }
+        }
+
         private void program_nextbutton_Click(object sender, EventArgs e)//다음 버튼 클릭
         {
             ListViewItem SearchText = Finditem2(Program_SearchBox.Text, ++listindex2);
             if ((SearchText != null) && (listindex2 > 0))
             {
                 Selectitem2(SearchText);
-                listView2.EnsureVisible(listindex2);
+                listView2.EnsureVisible(listindex2); listView1.Items.Clear();
             }
             else
             {
@@ -536,11 +579,86 @@ namespace icom
                 listindex2 = -1;
         }
 
-        private void Program_SearchBox_TextChanged(object sender, EventArgs e)
+        private void programHide_Click(object sender, EventArgs e)//중요 프로그램 숨기기 버튼 클릭 이벤트
         {
+            if (listView2.Items.Count > 0)
+            {
 
+                for (int i = listView2.Items.Count - 1; i >= 0; i--)
+                {
+                    MessageBox.Show(listView2.Items[i].SubItems[4].ToString());
+                    if (listView2.Items[i].SubItems[4].Text.Contains("Microsoft"))
+                    {
+                        listView2.Items.Remove(listView2.Items[i]);
+                    }
+                    else if (listView2.Items[i].SubItems[4].Text.Contains("Initech"))
+                    {
+                        listView2.Items.Remove(listView2.Items[i]);
+                    }
+                    else if (listView2.Items[i].SubItems[4].Text.Contains("IVI"))
+                    {
+                        listView2.Items.Remove(listView2.Items[i]);
+                    }
+                    else if (listView2.Items[i].SubItems[4].Text.Contains("RaonSecure"))
+                    {
+                        listView2.Items.Remove(listView2.Items[i]);
+                    }
+                    else if (listView2.Items[i].SubItems[4].Text.Contains("VISA"))
+                    {
+                        listView2.Items.Remove(listView2.Items[i]);
+                    }
+                    else if (listView2.Items[i].SubItems[4].Text.Contains("Windows"))
+                    {
+                        listView2.Items.Remove(listView2.Items[i]);
+                    }
+
+
+
+                }
+
+
+
+            }
+            listView2.Sorting = SortOrder.Ascending;
+            programCount_num.Text = listView2.Items.Count.ToString();
+        }
+
+        private void programRevert_Click(object sender, EventArgs e)//전체 목록보기 버튼 클릭 이벤트
+        {
+            listView2.Items.Clear();
+
+            string computer = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+            using (RegistryKey app = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(computer))
+            {
+                foreach (string appName in app.GetSubKeyNames())
+                {
+
+                    using (RegistryKey name = app.OpenSubKey(appName))
+                    {
+                        try
+                        {
+                            var uninstall = name.GetValue("UninstallString");
+                            var programName = name.GetValue("DisplayName");
+                            var installDate = name.GetValue("InstallDate");
+                            var memorySize = (int)name.GetValue("EstimatedSize");
+                            var publisher = name.GetValue("Publisher");
+
+                            string[] row = { Convert.ToString(programName.ToString()), Convert.ToString(installDate.ToString()), Convert.ToString(memorySize / 1000), Convert.ToString(uninstall.ToString()), Convert.ToString(publisher.ToString()) };
+                            var listViewItem = new ListViewItem(row);
+                            listView2.Items.Add(listViewItem);
+                            Process p = new Process();
+
+
+                        }
+                        catch (Exception ex)
+                        { Console.WriteLine(ex.Message); }
+                    }
+                }
+                programCount_num.Text = listView2.Items.Count.ToString();
+            }
         }
     }
+
 
     /*--------------------------------------정렬 클래스----------------------------------------------*/
     //sort
