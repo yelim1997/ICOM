@@ -1,17 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-//using ListViewColumSortDLL;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Net;
 using Microsoft.Win32;
-using System.Collections;
-using System.Security.Principal;
 using System.Management;
 
 namespace icom
@@ -74,7 +65,7 @@ namespace icom
                             var memorySize = (int)name.GetValue("EstimatedSize");
                             var publisher = name.GetValue("Publisher");
 
-                            string[] row = { Convert.ToString(programName.ToString()), Convert.ToString(installDate.ToString()), Convert.ToString(memorySize / 1000), Convert.ToString(uninstall.ToString()), Convert.ToString(publisher.ToString())};
+                            string[] row = { Convert.ToString(programName.ToString()), Convert.ToString(installDate.ToString()), Convert.ToString(memorySize / 1000), Convert.ToString(uninstall.ToString()), Convert.ToString(publisher.ToString()) };
                             var listViewItem = new ListViewItem(row);
                             listView2.Items.Add(listViewItem);
                             Process p = new Process();
@@ -107,16 +98,16 @@ namespace icom
 
             if (Convert.ToInt32(CpuSet) == 0)
             {
-                if (ref_value > 70)
+                if (ref_value > 40)
                 {
                     pictureBox.Image = global::icom.Properties.Resources.위험;
                 }
-                /*
-                else if (70 > ref_value && ref_value > 20)
+
+                else if (40 > ref_value && ref_value > 10)
                 {
                     pictureBox.Image = Properties.Resources.적정;
                 }
-                */
+
                 else
                 {
                     pictureBox.Image = Properties.Resources.안정;
@@ -390,7 +381,7 @@ namespace icom
                 {
 
 
-                    if (listView1.Items[i].SubItems[3].Text == "System")
+                    if (!listView1.Items[i].SubItems[3].Text.Contains(SystemInformation.UserName))
                     {
                         listView1.Items.Remove(listView1.Items[i]);
                         Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
@@ -404,24 +395,28 @@ namespace icom
         private void Process_Revert_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+            Process[] proc = Process.GetProcesses();
 
+            /*
             try
+            {*/
+
+            //    Process[] proc = Process.GetProcesses();
+            //  Process_Num_Value.Text = Convert.ToString(proc.Length);
+            foreach (Process p in proc)
             {
+                WriteProcessInfo(p);
 
-                Process[] proc = Process.GetProcesses();
-                Process_Num_Value.Text = Convert.ToString(proc.Length);
-                foreach (Process p in proc)
-                {
-                    WriteProcessInfo(p);
-                    Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
-
-                }
+                //Process_Num_Value.Text = Convert.ToString(listView1.Items.Count);
 
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+
+            /*   }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine(ex.Message);
+                  }*/
+            Process_Num_Value.Text = listView1.Items.Count.ToString();
 
         }
 
@@ -480,7 +475,6 @@ namespace icom
 
                                 product[num] = code.Substring(33, 36);
                                 num++;
-                                MessageBox.Show(listView2.Items[i].SubItems[0].ToString());
                                 listView2.Items[i].Remove();
                             }
                             else
@@ -586,7 +580,6 @@ namespace icom
 
                 for (int i = listView2.Items.Count - 1; i >= 0; i--)
                 {
-                    MessageBox.Show(listView2.Items[i].SubItems[4].ToString());
                     if (listView2.Items[i].SubItems[4].Text.Contains("Microsoft"))
                     {
                         listView2.Items.Remove(listView2.Items[i]);
@@ -611,8 +604,6 @@ namespace icom
                     {
                         listView2.Items.Remove(listView2.Items[i]);
                     }
-
-
 
                 }
 

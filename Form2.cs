@@ -30,7 +30,7 @@ namespace icom
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            for(int i=0;i< cpu_value.Length;i++)
+            for (int i = 0; i < cpu_value.Length; i++)
             {
                 cpu_value[i] = textBox1.Text;
             }

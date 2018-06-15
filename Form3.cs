@@ -35,7 +35,7 @@ namespace icom
         private void metroButton1_Click(object sender, EventArgs e)
         {
             text = user_name_Input.Text;
-            if(user_name_Input.Text == Environment.UserName)
+            if (user_name_Input.Text == Environment.UserName)
             {
                 MessageBox.Show("인증에 성공 하셨습니다.");
                 this.Close();
